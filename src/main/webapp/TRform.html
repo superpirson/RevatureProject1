@@ -1,0 +1,48 @@
+<!--This form must collect (required): basic employee information; 
+date, time, location, description, cost, grading format, and 
+type of event; work-related justification.  -->
+
+<head>
+    <link rel="stylesheet" href="site.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="TRform.js"></script>
+</head>
+
+<body>
+    <div>
+        <form class="form input-form" onsubmit="submitForm()">
+            <div>
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" placeholder="Enter first name"></input>
+
+            <label for="date">Date</label>
+            <input type="date" name="date" placeholder="Enter date"></input>
+
+            <label for="cost">Cost</label>
+            <input type="text" name="cost" placeholder="Enter cost"></input>
+
+            <label for="location">Location</label>
+            <input type="text" name="location" placeholder="Enter location"></input>
+
+            <label for="description">Description</label>
+            <input type="text" name="description" placeholder="Enter description"></input>
+            </div>
+            <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" placeholder="Enter last name"></input>
+
+            <label for="gradingFormat">Grade</label>
+            <input type="text" name="grade" placeholder="Enter grade"></input>
+
+            <label for="eventType">Type of Event</label>
+            <input type="text" name="eventType" placeholder="Enter type of event"></input>
+
+            <label for="reason">Reason for Reimbursement</label>
+            <textarea type="textarea" name="reason" placeholder="Enter reason"></textarea>
+
+            <button type="submit">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
