@@ -12,33 +12,48 @@ type of event; work-related justification.  -->
     <div>
         <form class="form input-form" onsubmit="submitForm()">
             <div>
-            <label for="firstName">First Name</label>
-            <input type="text" name="firstName" placeholder="Enter first name"></input>
+            <label for="first-name" >First Name</label>
+            <input required type="text" name="first-name" placeholder="Enter first name"></input>
 
             <label for="date">Date</label>
-            <input type="date" name="date" placeholder="Enter date"></input>
+            <input required type="date" name="date" placeholder="Enter date"></input>
 
             <label for="cost">Cost</label>
-            <input type="text" name="cost" placeholder="Enter cost"></input>
+            <input required type="text" name="cost" placeholder="Enter cost"></input>
+            
+            <div class="admin">
+            <label for="reason">Reason for Changing Reimbursement Amount</label>
+            <textarea type="textarea" name="reason-change" placeholder="Enter reason for changing amount"></textarea>
+            </div>
 
             <label for="location">Location</label>
-            <input type="text" name="location" placeholder="Enter location"></input>
+            <input required type="text" name="location" placeholder="Enter location"></input>
 
             <label for="description">Description</label>
-            <input type="text" name="description" placeholder="Enter description"></input>
+            <textarea required type="textarea" name="description" placeholder="Enter description"></textarea>
             </div>
             <div>
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" placeholder="Enter last name"></input>
+            <label for="last-name">Last Name</label>
+            <input required type="text" name="last-name" placeholder="Enter last name"></input>
 
-            <label for="gradingFormat">Grade</label>
-            <input type="text" name="grade" placeholder="Enter grade"></input>
+            <label for="grading-format">Grade</label>
+            <input required type="text" name="grade" placeholder="Enter grade"></input>
 
-            <label for="eventType">Type of Event</label>
-            <input type="text" name="eventType" placeholder="Enter type of event"></input>
+            <label for="event-type">Type of Event</label>
+            <input required type="text" name="event-type" placeholder="Enter type of event"></input>
 
             <label for="reason">Reason for Reimbursement</label>
-            <textarea type="textarea" name="reason" placeholder="Enter reason"></textarea>
+            <textarea required type="textarea" name="reason" placeholder="Enter reason"></textarea>
+
+            <div class="admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+
+            <div class="admin">
+            <label for="reason">Reason for Denial</label>
+            <textarea type="textarea" name="reason" placeholder="Enter reason for denial"></textarea>
+            </div>
 
             <button type="submit">Submit</button>
             </div>

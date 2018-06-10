@@ -41,7 +41,9 @@ body * {
     margin-bottom: 15px;
     width: 100%;
 }
-
+.form {
+    max-width: 100%;
+}
 .form textarea {
     max-width: 300px;
 }
@@ -78,4 +80,18 @@ body * {
 }
 .form.input-form div label {
     align-self: flex-start;
+}
+
+.form.input-form .approve-deny {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form.input-form .admin {
+    display: none;
+}
+
+.form.input-form .approve-deny input {
+    width: 0;
 }
