@@ -1,0 +1,63 @@
+<!--This form must collect (required): basic employee information; 
+date, time, location, description, cost, grading format, and 
+type of event; work-related justification.  -->
+
+<head>
+    <link rel="stylesheet" href="site.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="TRform.js"></script>
+</head>
+
+<body>
+    <div>
+        <form class="form input-form" onsubmit="submitForm()">
+            <div>
+            <label for="first-name" >First Name</label>
+            <input required type="text" name="first-name" placeholder="Enter first name"></input>
+
+            <label for="date">Date</label>
+            <input required type="date" name="date" placeholder="Enter date"></input>
+
+            <label for="cost">Cost</label>
+            <input required type="text" name="cost" placeholder="Enter cost"></input>
+            
+            <div class="admin">
+            <label for="reason">Reason for Changing Reimbursement Amount</label>
+            <textarea type="textarea" name="reason-change" placeholder="Enter reason for changing amount"></textarea>
+            </div>
+
+            <label for="location">Location</label>
+            <input required type="text" name="location" placeholder="Enter location"></input>
+
+            <label for="description">Description</label>
+            <textarea required type="textarea" name="description" placeholder="Enter description"></textarea>
+            </div>
+            <div>
+            <label for="last-name">Last Name</label>
+            <input required type="text" name="last-name" placeholder="Enter last name"></input>
+
+            <label for="grading-format">Grade</label>
+            <input required type="text" name="grade" placeholder="Enter grade"></input>
+
+            <label for="event-type">Type of Event</label>
+            <input required type="text" name="event-type" placeholder="Enter type of event"></input>
+
+            <label for="reason">Reason for Reimbursement</label>
+            <textarea required type="textarea" name="reason" placeholder="Enter reason"></textarea>
+
+            <div class="admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+
+            <div class="admin">
+            <label for="reason">Reason for Denial</label>
+            <textarea type="textarea" name="reason" placeholder="Enter reason for denial"></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
