@@ -244,21 +244,21 @@ end update_form_stat;
 
 
 /* ------------------------------------------- SUBMITTED BY ---------------------------------------------------------- */
-CREATE OR REPLACE PROCEDURE SET_SUBMITTED_BY
+CREATE OR REPLACE PROCEDURE create_SUBMITTED_BY
 (X IN NUMBER)
 AS
 BEGIN
 INSERT INTO FORMS_TABLE(SUBMITTED_BY) VALUES(X);
-END SET_SUBMITTED_BY;
+END create_SUBMITTED_BY;
 
 
 -- procedure to update the submitted by column
-CREATE OR REPLACE PROCEDURE SET_SUBMITTED_BY
+CREATE OR REPLACE PROCEDURE update_SUBMITTED_BY
 (X IN NUMBER, ID IN NUMBER)
 AS
 BEGIN
 UPDATE FORMS_TABLE SET SUBMITTED_BY = X WHERE FORM_ID = ID;
-END SET_SUBMITTED_BY;
+END update_SUBMITTED_BY;
 
 
 
@@ -439,7 +439,7 @@ end set_email;
 
 
 
--- insert
+
 
 
 
