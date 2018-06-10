@@ -1,12 +1,12 @@
 -- creating the accounts_table
-create table accounts_table(account_id number not null, username varchar(13), pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
+create table accounts_table(account_id number not null unique, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
-create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade number, date_compeleted date, 
+create table forms_table(form_id number not null unique, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number, reason varchar(250), primary key(form_id), 
-    submitted_by number not null FOREIGN KEY REFERENCES accounts_table(account_id));
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
+    CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
 -- generates account_id values
 create sequence account_id_seq
@@ -17,7 +17,7 @@ cache 3;
 
 -- generates form_id values
 create sequence form_id_seq
-min value 100
+minvalue 100
 maxvalue 900
 increment by 7
 cache 7;
@@ -25,118 +25,196 @@ cache 7;
 
 /*              procedures for the forms_table          */
 
---procedure to set the first name
-create or replace PROCEDURE set_fname 
+/* ---------------------------------------------FIRST NAME-------------------------------------------------------- */
+-- procedure to insert the first name
+create or replace procedure create_fname
+(firstN in varchar2)
+as
+begin
+insert into forms_table(fname) values (firstN);
+end create_fname;
+
+
+
+--procedure to update the first name
+create or replace PROCEDURE update_fname 
 (firstN in varchar2, id in number)
 as
 begin
-update forms_table set fname = gd where form_id = id;
-end set_fname;
+update forms_table set fname = firstN where form_id = id;
+end update_fname;
+
+/* -------------------------------------------LAST NAME---------------------------------------------------------- */
+
+-- procedure to set the last name
+create or replace procedure create_lname
+(lastN in varchar2)
+as
+begin
+insert into forms_table(lname) values (lastN);
+end create_lname;
 
 
 
 
 -- procedure to set the last name
-create or replace PROCEDURE set_lname 
+create or replace PROCEDURE update_lname 
 (lastN in varchar2, id in number)
 as
 begin
-update forms_table set lname = gd where form_id = id;
-end set_lname;
+update forms_table set lname = lastN where form_id = id;
+end update_lname;
 
 
+
+/* ------------------------------------------- GRADE ---------------------------------------------------------- */
+
+create or replace procedure create_grade
+(g in nuber)
+as
+begin
+insert into forms_table(grade) values (g);
+end create_lname;
 
 
 
 -- procedure to set the grade
-create or replace PROCEDURE set_grade 
+create or replace PROCEDURE update_grade 
 (gd in number, id in number)
 as
 begin
 update forms_table set grade = gd where form_id = id;
-end set_grade;
+end update_grade;
 
 
 
+/* -------------------------------------------DATE COMPLETED---------------------------------------------------------- */
+
+create or replace procedure create_date_completed
+(dat in date)
+as
+begin
+insert into forms_table(date_completed) values (dat);
+end create_lname;
 
 
 -- procedure to set the date_completed
-create or replace PROCEDURE set_date_complete 
+create or replace PROCEDURE update_date_complete 
 (gd in date, id in number)
 as
 begin
 update forms_table set date_completed = gd where form_id = id;
-end set_date_complete;
+end update_date_complete;
 
 
 
+/* -------------------------------------------EMPLOYEE APPROVAL---------------------------------------------------------- */
+
+create or replace procedure create_emp_approval
+(d in varchar2)
+as
+begin
+insert into forms_table(employee_approval) values (d);
+end create_emp_approval;
 
 
 -- procedure to approve forms from the employee
 --(yes/no, form_id)
-create or replace PROCEDURE emp_approval 
+create or replace PROCEDURE update_emp_approval 
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set employee_approval = gd where form_id = id;
-end emp_approval;
+end update_emp_approval;
 
 
 
+/* -------------------------------------------BENCO APPROVAL---------------------------------------------------------- */
+
+create or replace procedure create_benco_approval
+(d in varchar2)
+as
+begin
+insert into forms_table(benco_approval) values (d);
+end create_benco_approval;
 
 
 -- procedure to approve forms from BenCo
 --(yes/no, form_id)
-create or replace PROCEDURE benco_app
+create or replace PROCEDURE update_benco_app
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set benco_approval = gd where form_id = id;
-end benco_app;
+end update_benco_app;
 
 
 
 
+/* ------------------------------------------- DHA APPROVAL ---------------------------------------------------------- */
+
+create or replace procedure create_dha_approval
+(d in varchar2)
+as
+begin
+insert into forms_table(DHA_APPROVAL) values (d);
+end create_dha_approval;
 
 
 -- procedure to approve forms BY DHA
 --(yes/no, form_id)
-create or replace PROCEDURE dha_app 
+create or replace PROCEDURE update_dha_app 
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set DHA_approval = gd where form_id = id;
-end dha_app;
+end update_dha_app;
 
 
 
 
+/* ------------------------------------------- DSA APPROVAL ---------------------------------------------------------- */
+
+create or replace procedure create_dsa_approval
+(d in varchar2)
+as
+begin
+insert into forms_table(dsa_approval) values (d);
+end create_dsa_approval;
 
 
 -- procedure to approve forms BY DSA
 --(yes/no, form_id)
-create or replace PROCEDURE DSA_app 
+create or replace PROCEDURE update_DSA_app 
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set DSA_approval = gd where form_id = id;
-end dsa_app;
+end update_dsa_app;
 
 
 
 
 
 
+/* -------------------------------------------GRADES APPROVAL---------------------------------------------------------- */
+
+create or replace procedure create_grades_approval
+(d in varchar2)
+as
+begin
+insert into forms_table(grades_approval) values (d);
+end create_grades_approval;
 
 
 -- procedure to approve grades
 --(yes/no, form_id)
-create or replace PROCEDURE grades_app
+create or replace PROCEDURE update_grades_app
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set GRADES_approval = gd where form_id = id;
-end grades_app;
+end update_grades_app;
 
 
 
@@ -144,32 +222,64 @@ end grades_app;
 
 
 
+/* -------------------------------------------FORM STATUS---------------------------------------------------------- */
+
+create or replace procedure create_form_status
+(d in varchar2)
+as
+begin
+insert into forms_table(form_status) values (d);
+end create_form_status;
 
 
 -- procedure to set for status
 --(pending/approved/denied, form_id)
-create or replace PROCEDURE form_stat
+create or replace PROCEDURE update_form_stat
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set form_status = gd where form_id = id;
-end form_stat;
+end update_form_stat;
 
 
 
+/* ------------------------------------------- SUBMITTED BY ---------------------------------------------------------- */
+CREATE OR REPLACE PROCEDURE SET_SUBMITTED_BY
+(X IN NUMBER)
+AS
+BEGIN
+INSERT INTO FORMS_TABLE(SUBMITTED_BY) VALUES(X);
+END SET_SUBMITTED_BY;
+
+
+-- procedure to update the submitted by column
+CREATE OR REPLACE PROCEDURE SET_SUBMITTED_BY
+(X IN NUMBER, ID IN NUMBER)
+AS
+BEGIN
+UPDATE FORMS_TABLE SET SUBMITTED_BY = X WHERE FORM_ID = ID;
+END SET_SUBMITTED_BY;
 
 
 
+/* ------------------------------------------- DESCRIPTION ---------------------------------------------------------- */
+
+create or replace procedure create_description
+(d in varchar2)
+as
+begin
+insert into forms_table(description) values (d);
+end create_description;
 
 
 -- procedure to write the description
 --("description", form_id)
-create or replace PROCEDURE descrip_procedure
+create or replace PROCEDURE update_description
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set description = gd where form_id = id;
-end descrip_procedure;
+end update_description;
 
 
 
@@ -177,44 +287,69 @@ end descrip_procedure;
 
 
 
+/* ------------------------------------------- LOCATION ---------------------------------------------------------- */
+
+create or replace procedure create_location
+(d in varchar2)
+as
+begin
+insert into forms_table(location) values (d);
+end create_location;
 
 
 --procedure to set the location
 --("location", form_id)
-create or replace procedure set_location
+create or replace procedure update_location
 (loc in varchar2, id in number)
 as
 begin 
 update forms_table set location = loc where form_id = id;
-end set_location;
+end update_location;
 
 
 
+
+/* ------------------------------------------- COST ---------------------------------------------------------- */
+
+create or replace procedure create_cost
+(d in number)
+as
+begin
+insert into forms_table(cost) values (d);
+end create_cost;
 
 
 
 --procedure to set the cost
 --(23.99, forms_id)
-create or replace procedure set_cost
+create or replace procedure update_cost
 (cos in number, id in number)
 as
 begin 
 update forms_table set cost = cos where form_id = id;
-end set_cost;
+end update_cost;
 
 
 
 
+/* -------------------------------------------REASON---------------------------------------------------------- */
+
+create or replace procedure create_reason
+(d in varchar2)
+as
+begin
+insert into forms_table(reason) values (d);
+end create_reason;
 
 
 --procedure to set the reason
 --("reason", forms_id)
-create or replace procedure set_reason
+create or replace procedure update_reason
 (cos in varchar2, id in number)
 as
 begin 
 update forms_table set reason = cos where form_id = id;
-end set_reason;
+end update_reason;
 
 
 
@@ -261,7 +396,7 @@ create or replace PROCEDURE set_lastname
 as
 begin
 update accounts_table set lname = gd where account_id = id;
-end set_lname;
+end set_lastname;
 
 
 
@@ -304,7 +439,7 @@ end set_email;
 
 
 
-
+-- insert
 
 
 
