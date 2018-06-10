@@ -1,25 +1,315 @@
+-- creating the accounts_table
 create table accounts_table(account_id number not null, username varchar(13), pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
-    
-create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade number, date_compeleted varchar(13), 
+-- creating the forms_table    
+create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade number, date_compeleted date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), submitted_by number not null, description varchar(250), location varchar(50), cost number, reason varchar(250), primary key(form_id));
+    form_status varchar(13), description varchar(250), location varchar(50), cost number, reason varchar(250), primary key(form_id), 
+    submitted_by number not null FOREIGN KEY REFERENCES accounts_table(account_id));
     
--- generates id values    
-create sequence id_seq
+-- generates account_id values
+create sequence account_id_seq
 minvalue 100
 maxvalue 900
 increment by 3
 cache 3;
 
+-- generates form_id values
+create sequence form_id_seq
+min value 100
+maxvalue 900
+increment by 7
+cache 7;
+
+
+/*              procedures for the forms_table          */
+
+--procedure to set the first name
+create or replace PROCEDURE set_fname 
+(firstN in varchar2, id in number)
+as
+begin
+update forms_table set fname = gd where form_id = id;
+end set_fname;
+
+
+
+
+-- procedure to set the last name
+create or replace PROCEDURE set_lname 
+(lastN in varchar2, id in number)
+as
+begin
+update forms_table set lname = gd where form_id = id;
+end set_lname;
+
+
+
+
+
+-- procedure to set the grade
+create or replace PROCEDURE set_grade 
+(gd in number, id in number)
+as
+begin
+update forms_table set grade = gd where form_id = id;
+end set_grade;
+
+
+
+
+
+-- procedure to set the date_completed
+create or replace PROCEDURE set_date_complete 
+(gd in date, id in number)
+as
+begin
+update forms_table set date_completed = gd where form_id = id;
+end set_date_complete;
+
+
+
+
+
 -- procedure to approve forms from the employee
+--(yes/no, form_id)
 create or replace PROCEDURE emp_approval 
 (gd in varchar2, id in number)
 as
 begin
 update forms_table set employee_approval = gd where form_id = id;
 end emp_approval;
+
+
+
+
+
+-- procedure to approve forms from BenCo
+--(yes/no, form_id)
+create or replace PROCEDURE benco_app
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set benco_approval = gd where form_id = id;
+end benco_app;
+
+
+
+
+
+
+-- procedure to approve forms BY DHA
+--(yes/no, form_id)
+create or replace PROCEDURE dha_app 
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set DHA_approval = gd where form_id = id;
+end dha_app;
+
+
+
+
+
+
+-- procedure to approve forms BY DSA
+--(yes/no, form_id)
+create or replace PROCEDURE DSA_app 
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set DSA_approval = gd where form_id = id;
+end dsa_app;
+
+
+
+
+
+
+
+
+-- procedure to approve grades
+--(yes/no, form_id)
+create or replace PROCEDURE grades_app
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set GRADES_approval = gd where form_id = id;
+end grades_app;
+
+
+
+
+
+
+
+
+
+-- procedure to set for status
+--(pending/approved/denied, form_id)
+create or replace PROCEDURE form_stat
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set form_status = gd where form_id = id;
+end form_stat;
+
+
+
+
+
+
+
+
+-- procedure to write the description
+--("description", form_id)
+create or replace PROCEDURE descrip_procedure
+(gd in varchar2, id in number)
+as
+begin
+update forms_table set description = gd where form_id = id;
+end descrip_procedure;
+
+
+
+
+
+
+
+
+
+--procedure to set the location
+--("location", form_id)
+create or replace procedure set_location
+(loc in varchar2, id in number)
+as
+begin 
+update forms_table set location = loc where form_id = id;
+end set_location;
+
+
+
+
+
+
+--procedure to set the cost
+--(23.99, forms_id)
+create or replace procedure set_cost
+(cos in number, id in number)
+as
+begin 
+update forms_table set cost = cos where form_id = id;
+end set_cost;
+
+
+
+
+
+
+--procedure to set the reason
+--("reason", forms_id)
+create or replace procedure set_reason
+(cos in varchar2, id in number)
+as
+begin 
+update forms_table set reason = cos where form_id = id;
+end set_reason;
+
+
+
+
+
+/*                      procedures for accounts_table               */
+
+-- procedure to set the username
+create or replace PROCEDURE set_username 
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set username = gd where account_id = id;
+end set_username;
+
+
+
+
+
+-- procedure to set the password
+create or replace PROCEDURE set_password
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set pass = gd where account_id = id;
+end set_password;
+
+
+
+
+-- procedure to set the first name
+create or replace PROCEDURE set_firstname 
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set fname = gd where account_id = id;
+end set_firstname;
+
+
+
+-- procedure to set the last name
+create or replace PROCEDURE set_lastname
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set lname = gd where account_id = id;
+end set_lname;
+
+
+
+
+
+
+-- procedure to set the account type
+create or replace PROCEDURE set_account_type 
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set account_type = gd where account_id = id;
+end set_account_type;
+
+
+
+
+
+-- procedure to set the reportsto
+create or replace PROCEDURE set_reportsto 
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set reportsto = gd where account_id = id;
+end set_reportsto;
+
+
+
+
+
+-- procedure to set the email
+create or replace procedure set_email
+(gd in varchar2, id in number)
+as
+begin
+update accounts_table set email = gd where account_id = id;
+end set_email;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
