@@ -39,13 +39,15 @@ body * {
 .form input, .form textarea {
     padding: 5px;
     margin-bottom: 15px;
-    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
 }
 .form {
     max-width: 100%;
 }
 .form textarea {
     max-width: 300px;
+    min-height: 50px;
 }
 
 .form button {
