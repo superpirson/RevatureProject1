@@ -35,7 +35,7 @@ public class TRform extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	
+	/*
 	// callable statements
 	CallableStatement myCall;
 	
@@ -88,7 +88,7 @@ public class TRform extends HttpServlet {
 	myCall.execute();
 	
 	
-	
+	*/
 	
 }
 

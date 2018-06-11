@@ -2,6 +2,8 @@ package com.revature;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -27,20 +29,18 @@ public class ConnFactory {
 			System.err.println("ERROR! Failed to check if con is closed: " + e1.getMessage());
 			e1.printStackTrace();
 		}
-		Properties connectionProperties = new Properties();
+		//Properties connectionProperties = new Properties();
 		try {
-			connectionProperties.load(new FileReader("database.properties"));
-			Class.forName(connectionProperties.getProperty("driver"));
+			//oracle.jdbc.driver.OracleDriver.access_string.equals("2");
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//System.out.println(" res is :"+ connectionProperties.getProperty("url")+ " " +connectionProperties.getProperty("user")+ " " +connectionProperties.getProperty("password"));
 
-			con=DriverManager.getConnection(connectionProperties.getProperty("url"),connectionProperties.getProperty("user"),connectionProperties.getProperty("password") );
-		} catch (IOException e) {
+			con=DriverManager.getConnection("jdbc:oracle:thin:@patton-revature.clgkhgrymxm8.us-west-2.rds.amazonaws.com:1521:ORCL","alexpatton1", "biglongsqlpassword!");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

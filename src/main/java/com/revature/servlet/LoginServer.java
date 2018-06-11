@@ -24,11 +24,13 @@ public class LoginServer extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	      Connection conn = cf.getConnection();
+
 		//Create a new session cookie!
 	      HttpSession session = request.getSession(true);
 	    
 	      
-	      System.out.println("Session " + session.getId() + " just rejoined. It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
+	      System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
 		response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("login.html");
 		rd.forward(request, response);
@@ -38,7 +40,10 @@ public class LoginServer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("In doPost of loginserver!");
+		//setup response text
+		//request.getParameter(name)
+		//
+		System.out.println("In doPost of loginserver! got:"+ request.getAttributeNames());
 	      HttpSession session = request.getSession(true);
 	      System.out.println(request.toString());
 	      //Login a new User
@@ -47,22 +52,21 @@ public class LoginServer extends HttpServlet {
 			primaryKeys[0] = "account_id";
 			String sql = "select * from accounts_table where username= ?";
 			
-			/*try {
+			try {
 			PreparedStatement ps = conn.prepareStatement(sql, primaryKeys);
-			ps.setString(1, x);
+			ps.setString(1, "dummy!");
 			ResultSet rs;
 
 				rs = ps.executeQuery();
 			if (!rs.next()) {
-				return false;
+				return;
 			}
-			return rs.getBoolean(1);
+			
 			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			*/
 		//response.sendRedirect("home");
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
