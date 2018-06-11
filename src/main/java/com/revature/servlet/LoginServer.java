@@ -53,11 +53,15 @@ public class LoginServer extends HttpServlet {
 			
 		}
 		//*/
-		String userName = convertStreamToString(request.getPart("username").getInputStream());
-		System.out.println("So getparts gave us: " + userName);
 	      HttpSession session = request.getSession(true);
+
+		String userName = convertStreamToString(request.getPart("username").getInputStream());
+		String password = convertStreamToString(request.getPart("password").getInputStream());
+
+		System.out.println("Loginserver just got a post for username: " + userName + " password: " + password + " and user currently has username: "+session.getAttribute("username") + " password: " +  session.getAttribute("password") );
 	      //Login a new User
-	      
+	      session.setAttribute("username", userName);
+	      session.setAttribute("password", password);
 	      
 	      
 	      
@@ -68,7 +72,7 @@ public class LoginServer extends HttpServlet {
 			
 			try {
 			PreparedStatement ps = conn.prepareStatement(sql, primaryKeys);
-			ps.setString(1, "dummy!");
+			ps.setString(1, userName);
 			ResultSet rs;
 
 				rs = ps.executeQuery();
@@ -84,7 +88,7 @@ public class LoginServer extends HttpServlet {
 		//response.sendRedirect("home");
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
-	static String convertStreamToString(java.io.InputStream is) {
+	public static String convertStreamToString(java.io.InputStream is) {
 		 java.util.Scanner s =null;
 		try {s= new java.util.Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
