@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,18 +15,35 @@ import oracle.jdbc.proxy.annotation.GetProxy;
 public class ConnFactory {
 	private static ConnFactory cf = new ConnFactory();
 	private static Connection con = null;
-	public static synchronized ConnFactory getInstance() {
-		if (cf == null) {
+	public static CallableStatement myCall = null;
+	
+	public static synchronized ConnFactory getInstance() 
+	{
+		if (cf == null) 
+		{
 			cf = new ConnFactory();
 		}
 		return cf;		
 	}
-	public Connection getConnection() {
-		try {
-			if( con != null&& !con.isClosed()) {
+	
+	
+	public Connection getConnection() 
+	{
+		
+		try 
+		{
+			if( con != null&& !con.isClosed()) 
+			{
 				return con;
 			}
-		} catch (SQLException e1) {
+			
+			//insert callablestatement for account_table
+			myCall = con.prepareCall(" {call insert_trform_accounts_table(?,?,?,?,?,?,?,?)} ");
+			
+
+		} 
+		catch (SQLException e1) 
+		{
 			System.err.println("ERROR! Failed to check if con is closed: " + e1.getMessage());
 			e1.printStackTrace();
 		}

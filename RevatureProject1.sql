@@ -355,7 +355,36 @@ end update_reason;
 
 
 
+create or replace procedure insert_TRForm
+(p_form_id in number, p_fName in varchar, p_lName in varchar, p_grade in number, p_date_completed in date,
+p_employee_approval in varchar, p_benCo_approval in varchar, p_dha_approval in varchar, p_dsa_approval in varchar, p_grades_approval in varchar,
+p_form_status in varchar, p_description in varchar, p_location in varchar, p_cost in number, p_reason in varchar, p_submit in number)
+as
+begin
+insert into accounts_table 
+VALUES (p_form, p_fName, p_lName, p_grade, p_date_completed, p_employee_approval, p_benCo_approval, p_dha_approval, p_dsa_approval, p_grades_approval,
+p_form_status, p_description, p_location, p_cost, p_reason, p_submit);
+end insert_trform;
+
+
+
+
+
+
+
+
 /*                      procedures for accounts_table               */
+
+
+create or replace procedure insert_trform_accounts_table
+(acc_id in number, usern in varchar2, pswrd in varchar2, firstn in varchar2, lastn in varchar2, acnt_type in varchar2, 
+reports in varchar2, eml in varchar2)
+as 
+begin
+insert into accounts_table
+values (account_id_seq.nextval, usern, pswrd, firstn, lastn, acnt_type, reports, eml);
+end insert_trform_accounts_table;
+
 
 -- procedure to set the username
 create or replace PROCEDURE set_username 
