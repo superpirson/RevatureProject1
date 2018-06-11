@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginServer
  */
+@MultipartConfig
 public class LoginServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static com.revature.ConnFactory cf =com.revature.ConnFactory.getInstance();
@@ -23,6 +25,7 @@ public class LoginServer extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	      Connection conn = cf.getConnection();
 
@@ -43,10 +46,21 @@ public class LoginServer extends HttpServlet {
 		//setup response text
 		//request.getParameter(name)
 		//
-		System.out.println("In doPost of loginserver! got:"+ request.getAttributeNames());
+		/*
+		System.out.println("In doPost of loginserver! got:");
+		while(request.getReader().ready()) {
+			System.out.println(request.getReader().readLine());
+			
+		}
+		//*/
+		String userName = convertStreamToString(request.getPart("username").getInputStream());
+		System.out.println("So getparts gave us: " + userName);
 	      HttpSession session = request.getSession(true);
-	      System.out.println(request.toString());
 	      //Login a new User
+	      
+	      
+	      
+	      
 	      Connection conn = cf.getConnection();
 			String[] primaryKeys = new String[1];
 			primaryKeys[0] = "account_id";
@@ -70,5 +84,12 @@ public class LoginServer extends HttpServlet {
 		//response.sendRedirect("home");
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
-
+	static String convertStreamToString(java.io.InputStream is) {
+		 java.util.Scanner s =null;
+		try {s= new java.util.Scanner(is).useDelimiter("\\A");
+	    return s.hasNext() ? s.next() : "";
+	   }finally {
+		   s.close();
+	   }
+	}
 }
