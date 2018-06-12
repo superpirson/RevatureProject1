@@ -59,18 +59,24 @@ public class FormInfo extends HttpServlet {
 		      Connection conn = cf.getConnection();
 				String[] primaryKeys = new String[1];
 				primaryKeys[0] = "form_id";
-				String getOneForm = "select * from forms_table where form_id= ANY ?";
-				String getAllForms = "select * from forms_table where form_id= ANY {";
+				String sql = "select * from forms_table where form_id= ANY ?";
 
 				PreparedStatement ps;
-				try {
-					ps = conn.prepareStatement(getOneForm, primaryKeys);
+				ResultSet rs;
 			
-				//ps.setString(1, (String) session.getAttribute("username"));
-					ps.setString(1,  formID);
-					ResultSet rs;
+				try {
+					if (formID == null || formID.length()<=0 || formID.trim().equals("")) {
+						sql= "select * from forms_table";
+						ps = conn.prepareStatement(sql, primaryKeys);
 
+					}else {
+						ps = conn.prepareStatement(sql, primaryKeys);
+						//ps.setString(1, (String) session.getAttribute("username"));
+							ps.setString(1,  formID);
+					}
+				
 					rs = ps.executeQuery();
+					
 					res.getWriter().append("{\"forms\":[");
 					boolean seen=false;
 				while (rs.next()) {
