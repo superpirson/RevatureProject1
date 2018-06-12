@@ -36,8 +36,13 @@ insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton
 
 insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
     'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+
+    
+
+
     insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
     'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+
 
 /*
 insert into forms_table values(form_id_seq.nextval, 'Joe', 'Coppola', 85, date '03-05-05', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Pending', 'reimbursement for training', 'Tampa', 250, 
@@ -516,7 +521,21 @@ END DELETE_form;
 
 
 
+create or replace procedure view_forms
+(vc_cursor out sys_refcursor, f_id in number, report_to in varchar2)
+as
+begin
+    open vc_cursor for 
+    select form_id from forms_table 
+    full outer join accounts_table 
+    on forms_table.submitted_by = accounts_table.account_id
+    where form_id = f_id and reportsto = report_to;
+    commit;
+end;
 
+variable rc refcursor;
+exec view_forms(:rc, 90, 'DHA');
+print rc;
 
 
 
