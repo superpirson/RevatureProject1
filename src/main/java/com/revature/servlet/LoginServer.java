@@ -79,7 +79,15 @@ public class LoginServer extends HttpServlet {
 			if (!rs.next()) {
 				return;
 			}
-			
+			String DBpass=rs.getString("password");
+			if (DBpass == null) {
+				System.err.println("ERROR! Null password!");
+				return;
+			}
+			if (DBpass.equals(password)) {
+				RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
+				rd.forward(request, response);
+			}
 			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

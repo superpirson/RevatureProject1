@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.google.gson.Gson;
+
 import static com.revature.servlet.LoginServer.convertStreamToString;;
 
 
@@ -32,6 +34,11 @@ public class TRform extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
+		//get a user's data and send it to Joe
+		//for now, just send the dummy till Raf gets more done on the DB
+		Gson formData=new Gson();
+		response.getWriter().append();
+		
 		rd.forward(request, response);
 	      
 	}

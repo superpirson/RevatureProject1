@@ -36,10 +36,10 @@ public class ConnFactory {
 			{
 				return con;
 			}
-			
+			/* DUDE! what are you doing putting this in here? this is the ConnFactory class, it should not be changed.
 			//insert callablestatement for account_table
 			myCall = con.prepareCall(" {call insert_trform_accounts_table(?,?,?,?,?,?,?,?)} ");
-			
+			*/
 
 		} 
 		catch (SQLException e1) 
