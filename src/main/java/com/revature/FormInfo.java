@@ -60,6 +60,7 @@ public class FormInfo extends HttpServlet {
 				String[] primaryKeys = new String[1];
 				primaryKeys[0] = "form_id";
 				String getOneForm = "select * from forms_table where form_id= ANY ?";
+				String getAllForms = "select * from forms_table where form_id= ANY {";
 
 				PreparedStatement ps;
 				try {
