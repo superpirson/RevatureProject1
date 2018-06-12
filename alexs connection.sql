@@ -31,6 +31,9 @@ insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesa
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com');   
 
 
+insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
+    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+
 /*
 insert into forms_table values(form_id_seq.nextval, 'Joe', 'Coppola', 85, date '03-05-05', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Pending', 'reimbursement for training', 'Tampa', 250, 
 'Travel', ); */
