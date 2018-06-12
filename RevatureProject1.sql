@@ -1,12 +1,16 @@
 -- creating the accounts_table
-create table accounts_table(account_id number not null unique, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
+create table accounts_table(account_id number not null, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
-create table forms_table(form_id number not null unique, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date, 
+create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
     form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
+    
+ 
+    
+    
     
 -- generates account_id values
 create sequence account_id_seq
@@ -21,6 +25,16 @@ minvalue 100
 maxvalue 900
 increment by 7
 cache 7;
+
+
+
+
+insert into accounts_table values(account_id_seq.nextval, "rafaeltx", "awesomesauce", "Rafael", "Mariano", "DHA", "DSA", "rafael@idk.com");   
+
+
+
+
+
 
 
 /*              procedures for the forms_table          */
@@ -69,8 +83,8 @@ end update_lname;
 
 /* ------------------------------------------- GRADE ---------------------------------------------------------- */
 
-create or replace procedure create_grade
-(g in nuber)
+create or replace procedure create_lname
+(g in number)
 as
 begin
 insert into forms_table(grade) values (g);
@@ -95,7 +109,7 @@ create or replace procedure create_date_completed
 as
 begin
 insert into forms_table(date_completed) values (dat);
-end create_lname;
+end create_date_completed;
 
 
 -- procedure to set the date_completed
