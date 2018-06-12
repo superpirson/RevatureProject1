@@ -15,8 +15,8 @@ import java.util.Properties;
 import oracle.jdbc.proxy.annotation.GetProxy;
 
 public class ConnFactory{
-	public static final Hashtable<String, String> nameMapsToSQL= new Hashtable<String, String>();
-	public static final Hashtable<String, String> nameMapsInverse= new Hashtable<String, String>();
+	public static Hashtable<String, String> nameMapsToSQL= new Hashtable<String, String>();
+	public static  Hashtable<String, String> nameMapsInverse= new Hashtable<String, String>();
 
 	static {
 		nameMapsToSQL.put("first-name", "fName");

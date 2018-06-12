@@ -93,7 +93,8 @@ public class FormInfo extends HttpServlet {
 						}
 						Object o = rs.getObject(i);
 						String dataAdd = gBuilder.toJson(o);
-						res.getWriter().append("\""+nameMapsInverse.get(rs.getMetaData().getColumnLabel(i))+"\":" + dataAdd );
+//						/nameMapsInverse.get(
+						res.getWriter().append("\""+rs.getMetaData().getColumnLabel(i)+"\":" + dataAdd );
 
 						//s.append(" ["+o+"] = " +dataAdd);
 					}
