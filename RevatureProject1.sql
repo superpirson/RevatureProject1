@@ -3,10 +3,13 @@ create table accounts_table(account_id number not null unique, username varchar(
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
-create table forms_table(form_id number not null unique, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date, 
-    employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
-    CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
+
+create table forms_table(form_id number not null unique, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date,
+   employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
+   form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
+   CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
+
+
     
 -- generates account_id values
 create sequence account_id_seq
@@ -435,9 +438,18 @@ begin
 update accounts_table set email = gd where account_id = id;
 end set_email;
 
-
-
-
+--------------------------------
+create or replace procedure insert_TRForm
+(p_form_id in number, p_fName in varchar, p_lName in varchar, p_grade in number, p_date_completed in date,
+p_employee_approval in varchar, p_benCo_approval in varchar, p_dha_approval in varchar, p_dsa_approval in varchar, p_grades_approval in varchar,
+p_form_status in varchar, p_description in varchar, p_location in varchar, p_cost in number, p_reason in varchar)
+as
+begin
+insert into accounts_table 
+VALUES
+(p_form, p_fName, p_lName, p_grade, p_date_completed, p_employee_approval, p_benCo_approval, p_dha_approval, p_dsa_approval, p_grades_approval,
+p_form_status, p_description, p_location, p_cost, p_reason);
+end 
 
 
 
