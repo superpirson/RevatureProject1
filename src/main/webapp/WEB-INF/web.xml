@@ -40,7 +40,16 @@
   <servlet-mapping>
     <servlet-name>TRform</servlet-name>
     <url-pattern>/TRform</url-pattern>
-   	<url-pattern>/form</url-pattern>
-    
+    <url-pattern>/form</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FormInfo</display-name>
+    <servlet-name>FormInfo</servlet-name>
+    <servlet-class>com.revature.FormInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormInfo</servlet-name>
+    <url-pattern>/FormInfo</url-pattern>
   </servlet-mapping>
 </web-app>

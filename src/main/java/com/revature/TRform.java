@@ -36,33 +36,7 @@ public class TRform extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
 	      HttpSession session = request.getSession(true);
 
-		//get a user's data and send it to Joe
-		Gson gBuilder=new Gson();
-	      //do a quick SQL query for the current user
-	      Connection conn = cf.getConnection();
-			String[] primaryKeys = new String[1];
-			primaryKeys[0] = "account_id";
-			String sql = "select * from accounts_table where username= ?";
-
-			PreparedStatement ps;
-			try {
-				ps = conn.prepareStatement(sql, primaryKeys);
-		
-			ps.setString(1, (String) session.getAttribute("username"));
-			ResultSet rs;
-
-				rs = ps.executeQuery();
-
-			while (rs.next()) {
-				for (int i = 0; i<rs.getMetaData().getColumnCount(); i++) {
-					response.getWriter().append(gBuilder.toJson(rs.getObject(i)));
-				}
-			}
 				rd.forward(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	      
 		
 	}
@@ -72,19 +46,6 @@ public class TRform extends HttpServlet {
 	      HttpSession session = request.getSession(true);
 
 		Hashtable<String, String> form= new Hashtable<String, String>();
-		Hashtable<String, String> nameMaps= new Hashtable<String, String>();
-		nameMaps.put("first-name", "fName");
-		nameMaps.put("date", "date_completed");
-		nameMaps.put("cost", "cost");
-		nameMaps.put("reason", "reason");
-		nameMaps.put("location", "location");
-		nameMaps.put("description", "description");
-		nameMaps.put("last-name", "lName");
-		nameMaps.put("grading-format", "grade");
-		nameMaps.put("event-type", "");
-		nameMaps.put("reason", "reason");
-		nameMaps.put("reason", "reason");
-		nameMaps.put("reason", "reason");
 
 
 

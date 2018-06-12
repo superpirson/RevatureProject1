@@ -8,11 +8,34 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Hashtable;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import oracle.jdbc.proxy.annotation.GetProxy;
 
-public class ConnFactory {
+public class ConnFactory{
+	public static final Hashtable<String, String> nameMapsToSQL= new Hashtable<String, String>();
+	public static final Hashtable<String, String> nameMapsInverse= new Hashtable<String, String>();
+
+	static {
+		nameMapsToSQL.put("first-name", "fName");
+		nameMapsToSQL.put("date", "date_completed");
+		nameMapsToSQL.put("cost", "cost");
+		nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("location", "location");
+		nameMapsToSQL.put("description", "description");
+		nameMapsToSQL.put("last-name", "lName");
+		nameMapsToSQL.put("grading-format", "grade");
+		nameMapsToSQL.put("event-type", "");
+		nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("reason", "reason");
+		//Build the inverse
+		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
+			nameMapsInverse.put(e.getValue(), e.getKey());
+		}
+	}
 	private static ConnFactory cf = new ConnFactory();
 	private static Connection con = null;
 	public static CallableStatement myCall = null;
