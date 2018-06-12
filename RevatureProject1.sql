@@ -358,48 +358,78 @@ end update_reason;
 
 
 
+
+
+
+
+create or replace procedure insert_trform
+(p_id in number, p_first in varchar2, p_last in varchar2, p_grade in number, p_date_completed in date, p_emp_app in varchar2, p_benco_app in varchar2,
+p_dha_app in varchar2, p_dsa_app in varchar2, p_grades_app in varchar2, p_form_status in varchar2, p_description in varchar2, p_location in varchar2, 
+p_cost in varchar2, p_reason in varchar2, p_submitted_by in number)
+as
+begin
+insert into forms_table
+values (form_id_seq.nextval, p_first, p_last, p_grade, p_date_completed, p_emp_app, p_benco_app, p_dha_app, p_dsa_app, p_grades_app,
+p_form_status, p_description, p_location, p_cost, p_reason, p_submitted_by);
+end insert_trform;
+
+
+
+
+
 /*                      procedures for accounts_table               */
 
+
+create or replace procedure insert_trform_accounts_table
+(acc_id in number, usern in varchar2, pswrd in varchar2, firstn in varchar2, lastn in varchar2, acnt_type in varchar2, 
+reports in varchar2, eml in varchar2)
+as 
+begin
+insert into accounts_table
+values (account_id_seq.nextval, usern, pswrd, firstn, lastn, acnt_type, reports, eml);
+end insert_trform_accounts_table;
+
+
 -- procedure to set the username
-create or replace PROCEDURE set_username 
+create or replace PROCEDURE update_username 
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set username = gd where account_id = id;
-end set_username;
+end update_username;
 
 
 
 
 
 -- procedure to set the password
-create or replace PROCEDURE set_password
+create or replace PROCEDURE update_password
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set pass = gd where account_id = id;
-end set_password;
+end update_password;
 
 
 
 
 -- procedure to set the first name
-create or replace PROCEDURE set_firstname 
+create or replace PROCEDURE update_firstname 
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set fname = gd where account_id = id;
-end set_firstname;
+end update_firstname;
 
 
 
 -- procedure to set the last name
-create or replace PROCEDURE set_lastname
+create or replace PROCEDURE update_lastname
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set lname = gd where account_id = id;
-end set_lastname;
+end update_lastname;
 
 
 
@@ -407,36 +437,38 @@ end set_lastname;
 
 
 -- procedure to set the account type
-create or replace PROCEDURE set_account_type 
+create or replace PROCEDURE update_account_type 
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set account_type = gd where account_id = id;
-end set_account_type;
+end update_account_type;
 
 
 
 
 
 -- procedure to set the reportsto
-create or replace PROCEDURE set_reportsto 
+create or replace PROCEDURE update_reportsto 
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set reportsto = gd where account_id = id;
-end set_reportsto;
+end update_reportsto;
 
 
 
 
 
 -- procedure to set the email
-create or replace procedure set_email
+create or replace procedure update_email
 (gd in varchar2, id in number)
 as
 begin
 update accounts_table set email = gd where account_id = id;
-end set_email;
+end update_email;
+
+
 
 --------------------------------
 create or replace procedure insert_TRForm
@@ -450,6 +482,27 @@ VALUES
 (p_form, p_fName, p_lName, p_grade, p_date_completed, p_employee_approval, p_benCo_approval, p_dha_approval, p_dsa_approval, p_grades_approval,
 p_form_status, p_description, p_location, p_cost, p_reason);
 end 
+/*                  delete procedures               */
+
+-- to delete an account from the account table
+CREATE OR REPLACE PROCEDURE DELETE_ACCOUNT 
+(id in number)
+AS 
+BEGIN
+  delete from accounts_table where account_id = id;
+END DELETE_ACCOUNT;
+
+
+-- to delete a form in the forms_table
+CREATE OR REPLACE PROCEDURE DELETE_FORM
+(id in number)
+AS 
+BEGIN
+  delete from forms_table where form_id = id;
+END DELETE_form;
+
+
+
 
 
 

@@ -40,5 +40,7 @@
   <servlet-mapping>
     <servlet-name>TRform</servlet-name>
     <url-pattern>/TRform</url-pattern>
+   	<url-pattern>/form</url-pattern>
+    
   </servlet-mapping>
 </web-app>
