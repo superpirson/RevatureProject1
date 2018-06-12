@@ -3,22 +3,11 @@ create table accounts_table(account_id number not null, username varchar(13) uni
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
-<<<<<<< HEAD
-create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date, 
+create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason_denial varchar(250), reason_change varchar(250), 
+    reason_reimburse varchar(250),event_type varchar(13) ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
-=======
-
-create table forms_table(form_id number not null unique, fName varchar(13), lName varchar(13), grade number,constraint chk_grade check (grade>0), date_completed date,
-   employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-   form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason varchar(250), primary key(form_id), submitted_by number not null,
-   CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
-
-
->>>>>>> c297429b9b554ae211d523deedffe58c910d01fc
-    
- 
     
     
     
@@ -38,13 +27,13 @@ cache 7;
 
 
 
-
-insert into accounts_table values(account_id_seq.nextval, "rafaeltx", "awesomesauce", "Rafael", "Mariano", "DHA", "DSA", "rafael@idk.com");   
-
-
+insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesauce', 'Rafael', 'Mariano', 'DHA', 'DSA', 'rafael@idk.com');   
+insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com');   
 
 
-
+/*
+insert into forms_table values(form_id_seq.nextval, 'Joe', 'Coppola', 85, date '03-05-05', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Pending', 'reimbursement for training', 'Tampa', 250, 
+'Travel', ); */
 
 
 /*              procedures for the forms_table          */
@@ -378,20 +367,22 @@ end update_reason;
 
 
 
+ 
+ 
 
 
 
 
 
 create or replace procedure insert_trform
-(p_id in number, p_first in varchar2, p_last in varchar2, p_grade in number, p_date_completed in date, p_emp_app in varchar2, p_benco_app in varchar2,
+(p_id in number, p_first in varchar2, p_last in varchar2, p_grade in varchar2, p_date_completed in date, p_emp_app in varchar2, p_benco_app in varchar2,
 p_dha_app in varchar2, p_dsa_app in varchar2, p_grades_app in varchar2, p_form_status in varchar2, p_description in varchar2, p_location in varchar2, 
-p_cost in varchar2, p_reason in varchar2, p_submitted_by in number)
+p_cost in varchar2, p_reason_denial in varchar2, p_reason_change in varchar2, p_reason_reimbursement in varchar2, p_event_type in varchar2 ,p_submitted_by in number)
 as
 begin
 insert into forms_table
 values (form_id_seq.nextval, p_first, p_last, p_grade, p_date_completed, p_emp_app, p_benco_app, p_dha_app, p_dsa_app, p_grades_app,
-p_form_status, p_description, p_location, p_cost, p_reason, p_submitted_by);
+p_form_status, p_description, p_location, p_cost, p_reason_denial, p_reason_change, p_reason_reimbursement, p_event_type, p_submitted_by);
 end insert_trform;
 
 
@@ -490,19 +481,6 @@ update accounts_table set email = gd where account_id = id;
 end update_email;
 
 
-
---------------------------------
-create or replace procedure insert_TRForm
-(p_form_id in number, p_fName in varchar, p_lName in varchar, p_grade in number, p_date_completed in date,
-p_employee_approval in varchar, p_benCo_approval in varchar, p_dha_approval in varchar, p_dsa_approval in varchar, p_grades_approval in varchar,
-p_form_status in varchar, p_description in varchar, p_location in varchar, p_cost in number, p_reason in varchar)
-as
-begin
-insert into accounts_table 
-VALUES
-(p_form, p_fName, p_lName, p_grade, p_date_completed, p_employee_approval, p_benCo_approval, p_dha_approval, p_dsa_approval, p_grades_approval,
-p_form_status, p_description, p_location, p_cost, p_reason);
-end 
 /*                  delete procedures               */
 
 -- to delete an account from the account table
