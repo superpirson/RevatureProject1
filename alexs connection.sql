@@ -1,16 +1,19 @@
+drop table forms_table;
+drop table accounts_table;
 -- creating the accounts_table
 create table accounts_table(account_id number not null, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
-create table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
+create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
     form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason_denial varchar(250), reason_change varchar(250), 
     reason_reimburse varchar(250),event_type varchar(13) ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
     
-    
+    drop sequence account_id_seq ;
+    drop sequence form_id_seq;
 -- generates account_id values
 create sequence account_id_seq
 minvalue 100
@@ -32,6 +35,8 @@ insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton
 
 
 insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
+    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+    insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
     'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
 
 /*
