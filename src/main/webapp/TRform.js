@@ -8,19 +8,19 @@ var submitForm = function () {
 var submitLogin = function () {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'login');
-    document.get
     var formData = new FormData(document.getElementsByClassName("login-form")[0]);
-    xhr.onload = function () {
-    	
-    }
     xhr.send(formData);
 }
-var getForm = function (formID) {
+var loadLogin = function () {//window.location.href
+	var url = new URL(window.location.href);
+	var formID = url.searchParams.get("formID");
+	console.log(formID);
+	
+}
+var getForm = function (formID, func) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'FormInfo?formID=' + formID);
-    xhr.onload = function () {
-    	
-    }
+    xhr.onload = func;
     xhr.send()
 }
 
