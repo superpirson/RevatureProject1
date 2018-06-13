@@ -1,56 +1,52 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
 }
 
 body * {
     font-size: 16px;
 }
 
-.form {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-self: center;
+.main-body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+}
+.input-form {
+	align-items: center;
+    justify-content: space-around;
     padding: 30px;
-    min-width: 300px;
     background-color: rgb(201, 214, 232);
     border-radius: 3px;
-
-    /*centers element*/
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    width: 75%;
+}
+.input-form div {
+	display: flex;
+	flex-direction: column;
+	height: 450px;
+    flex-wrap: wrap;
+    width: 75%;
 }
 
-.form label {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 5px;
+.input-form div * {
+	margin: 5 20px;
 }
 .form input, .form textarea {
+	min-width: 350px;
+	max-width: 350px;
     padding: 5px;
     margin-bottom: 15px;
-    max-width: 100%;
-    min-width: 100%;
 }
 .form {
-    max-width: 100%;
+    
 }
 .form textarea {
-    max-width: 300px;
+    max-width: 350px;
     min-height: 50px;
 }
 
-button, .button {
+.navbar a, button, .button {
     max-width: 100px;
     padding: 10px 15px;
     border-radius: 3px;
@@ -60,28 +56,29 @@ button, .button {
     cursor: pointer;
 }
 
-button:hover, .button:hover {
+.navbar a:hover, button:hover, .button:hover {
     background-color: rgb(127, 156, 198);
 }
 
-button:active, .button:active {
+.navbar a:active, button:active, .button:active {
     background-color: rgb(113, 143, 186);
 }
 
 .form.input-form {
-    flex-direction: row;
+	display: flex;
+    flex-direction: column;
 }
 
-.form.input-form div {
+/*.form.input-form div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     padding: 20px;
     min-width: 300px;
-}
+}*/
 .form.input-form div label {
-    align-self: flex-start;
+    /*align-self: flex-start;*/
 }
 
 .form.input-form .approve-deny {
@@ -152,4 +149,18 @@ button:active, .button:active {
 }
 .js-display-table .button:focus {
 	border: none;
+}
+
+.navbar {
+	display: flex;
+	justify-content: left;
+	background-color:  rgb(220, 230, 250);
+	padding-left: 50px;
+}
+.navbar a {
+	padding: 10px 30px;
+	text-decoration: none;
+	margin: 0 3px;
+	background-color: rgb(201, 214, 232);
+	color: black;
 }

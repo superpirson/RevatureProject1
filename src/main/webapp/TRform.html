@@ -8,10 +8,15 @@ type of event; work-related justification.  -->
     <script type="text/javascript" src="TRform.js"></script>
 </head>
 
-<body onload="loadLogin()" >
-    <div>
-        <form class="form input-form" onsubmit="submitForm("TRform", "input-form")">
-            <div>
+<body onload="loadForm()" >
+ <div class="navbar">
+  <a href="login">Login</a>
+  <a href="home">Home</a>
+  <a class="active" href="TRform">Form</a>
+</div> 
+    <div class="main-body">
+        <form class="form input-form" onsubmit="submitForm('TRform', 'input-form')">
+        <div>
             <label for="first-name" >First Name</label>
             <input required type="text" name="first-name" placeholder="Enter first name"></input>
 
@@ -31,8 +36,7 @@ type of event; work-related justification.  -->
 
             <label for="description">Description</label>
             <textarea required type="textarea" name="description" placeholder="Enter description"></textarea>
-            </div>
-            <div>
+            
             <label for="last-name">Last Name</label>
             <input required type="text" name="last-name" placeholder="Enter last name"></input>
 
@@ -77,9 +81,8 @@ type of event; work-related justification.  -->
 
             <label for="file">Files</label>
             <input type="file" class="files" name="files" multiple/>
-
+</div>
             <button type="submit" value="login">Submit</button>
-            </div>
             
         </form>
     </div>

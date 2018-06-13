@@ -13,7 +13,7 @@ var getForm = function (formID, func) {
     }
     xhr.send()
 }
-var loadLogin = function () {
+var loadForm = function () {
 	var url = new URL(window.location.href);
 	var formID = url.searchParams.get("formID");
 	if (formID) {
