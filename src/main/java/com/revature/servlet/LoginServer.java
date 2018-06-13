@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import oracle.net.ns.SessionAtts;
 /**
  * Servlet implementation class LoginServer
  */
@@ -27,16 +29,17 @@ public class LoginServer extends HttpServlet {
 	 */
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      Connection conn = cf.getConnection();
+	     // Connection conn = cf.getConnection();
 
 		//Create a new session cookie!
-	      HttpSession session = request.getSession(true);
+	  //    HttpSession session = request.getSession(true);
 	    
 	      
-	      System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
-		response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
+	      //System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
+		//response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
+		//doPost(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("login.html");
-		rd.forward(request, response);
+	      rd.forward(request, response);
 	}
 
 	/**
@@ -79,7 +82,10 @@ public class LoginServer extends HttpServlet {
 			if (!rs.next()) {
 				return;
 			}
-			String DBpass=rs.getString("password");
+		/*	for (int i = 1; i<=rs.getMetaData().getColumnCount(); i++) {
+			System.out.println("got "+rs.getMetaData().getColumnName(i));
+			} */
+			String DBpass=rs.getString("pass");
 			if (DBpass == null || password== null || password.length()<1) {
 				System.err.println("ERROR! Null password!");
 				return;
@@ -87,15 +93,19 @@ public class LoginServer extends HttpServlet {
 
 			
 			if (DBpass.equals(password)) {
+				System.out.println("sussfully logged in " + session.getId() + " into username "+userName);
 				//Establish user data in cookie
 				session.setAttribute("account_type", rs.getString("account_type"));
 				session.setAttribute("fname", rs.getString("fname"));
 				session.setAttribute("lname", rs.getString("lname"));
 				session.setAttribute("reportsto", rs.getString("reportsto"));
-				RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
-				rd.forward(request, response);
+				
+				
+		  		
+		  		
 			}else {
 			      session.setAttribute("password", null);
+			      
 			}
 			
 
@@ -104,7 +114,11 @@ public class LoginServer extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		//response.sendRedirect("home");
+			System.out.println("sending redir to home");
+			RequestDispatcher rd = request.getRequestDispatcher("home");
+		    rd.forward(request, response);
+	  		//response.sendRedirect("home"); 
+
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
 	public static String convertStreamToString(java.io.InputStream is) {
@@ -119,8 +133,13 @@ public class LoginServer extends HttpServlet {
 	      HttpSession session = request.getSession(true);
 	      String password=(String) session.getAttribute("password");
 	      if ( password== null|| password.length()<1) {
-	  		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
-	  		rd.forward(request, response);
+	  		//RequestDispatcher rd = request.getRequestDispatcher("login.html");
+	  		//rd.forward(request, response);
+	  		response.sendRedirect("login");
+	  		
+
+	    	  System.out.println("Note: We had a user with invalid credentials, ID " + session.getId() + ", Who has been kicked to the login");
+	  		
 	  		return false;
 	      }
 	      return true;
