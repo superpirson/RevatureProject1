@@ -2,6 +2,7 @@ package com.revature;
 
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
- import static com.revature.servlet.LoginServer.convertStreamToString;
+ import static com.revature.servlet.LoginServer.*;
 @MultipartConfig
 public class TRform extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,20 +35,24 @@ public class TRform extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		if (!checkPasswordAndRedir(request, response)) {
+			return;
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
 	      HttpSession session = request.getSession(true);
 
-				rd.forward(request, response);
+		rd.forward(request, response);
 	      
 		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      HttpSession session = request.getSession(true);
-	     
-	      
-	      
+		if (!checkPasswordAndRedir(request, response)) {
+			return;
+		}
+		HttpSession session = request.getSession(true);
 		Hashtable<String, String> form= new Hashtable<String, String>();
 
 
