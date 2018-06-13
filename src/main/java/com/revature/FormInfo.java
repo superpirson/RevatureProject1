@@ -51,6 +51,8 @@ public class FormInfo extends HttpServlet {
 	      String userName = (String) session.getAttribute("username");
 	      String password=(String) session.getAttribute("password");
 	      String accountType = (String) session.getAttribute("account_type");
+	      String editingFormID = (String) session.getAttribute("editingFormID");
+
 //	     / StringBuilder s = new StringBuilder();
 		PrintWriter out = res.getWriter();
 		  res.setContentType("text/plain");
@@ -111,7 +113,7 @@ public class FormInfo extends HttpServlet {
 				res.getWriter().append("\"username\":"+gBuilder.toJson(userName)+",");
 				res.getWriter().append("\"password\":"+gBuilder.toJson(password)+",");
 				res.getWriter().append("\"accountType\":"+gBuilder.toJson(accountType)+",");
-
+				res.getWriter().append("\"editingFormID\":"+gBuilder.toJson(editingFormID)+",");
 				
 				
 				//Begin Displaying Visable users

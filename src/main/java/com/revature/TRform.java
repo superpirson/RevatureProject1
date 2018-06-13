@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 public class TRform extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static ConnFactory cf =ConnFactory.getInstance();
-
+	
 
     public TRform() {
         super();
@@ -38,10 +38,12 @@ public class TRform extends HttpServlet {
 		if (!checkPasswordAndRedir(request, response)) {
 			return;
 		}
+		
 
 		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
 	      HttpSession session = request.getSession(true);
-
+	    
+	      session.setAttribute("editingFormID",request.getAttribute("formID"));
 		rd.forward(request, response);
 	      
 		
