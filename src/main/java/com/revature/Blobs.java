@@ -55,7 +55,7 @@ public class Blobs {
 			rs = ps.executeQuery();
 			
 
-			File theFile = new File(outputFile); //outputFile == the name it will be downloaded to.
+			File theFile = new File(outputFile+".pdf"); //outputFile == the name it will be downloaded to.
 			FileOutputStream output = new FileOutputStream(theFile);
 			
 			if(rs.next()) 

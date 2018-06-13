@@ -11,11 +11,20 @@ var submitLogin = function () {
     document.get
     var formData = new FormData(document.getElementsByClassName("login-form")[0]);
     xhr.send(formData);
+    return false;
+}
+var getForm = function (formID) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'FormInfo?formID=' + formID);
+    xhr.onload = function () {
+    	
+    }
+    xhr.send()
 }
 
-var getForm = function () {
+var updateFormsTable = function () {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'FormInfo?formID=90');
+    xhr.open('GET', 'FormInfo?formID=');
     xhr.onload = function () {
         var data = JSON.parse(xhr.response);
         console.log(data);
@@ -85,6 +94,11 @@ var getForm = function () {
             	document.querySelector("." + propName).innerHTML = '<p>' + propName + '</p><p>' + data.forms[i][prop] + '</p>';
             	}
             }
+            //the edit button
+            var edit = document.createElement('a');
+            document.getElementsByClassName("form-" + (i + 1))[0].appendChild(edit).innerHTML = "edit";
+            edit.classList.add("button")
+            edit.href = "/TRForm?formID=" + data.forms[i].FORM_ID;
         }
     }
     xhr.send();

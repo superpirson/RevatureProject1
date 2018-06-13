@@ -50,7 +50,7 @@ body * {
     min-height: 50px;
 }
 
-.form button {
+button, .button {
     max-width: 100px;
     padding: 10px 15px;
     border-radius: 3px;
@@ -60,11 +60,11 @@ body * {
     cursor: pointer;
 }
 
-.form button:hover {
+button, .button:hover {
     background-color: rgb(127, 156, 198);
 }
 
-.form button:active {
+button, .button:active {
     background-color: rgb(113, 143, 186);
 }
 
@@ -106,6 +106,8 @@ body * {
 	display: flex;
 	flex-direction: column;
 	background-color: rgb(201, 214, 232);
+	padding: 20px;
+	margin: 50px;
 }
 .js-display-table, .js-display-table * {
 	border-radius: 3px;
@@ -113,13 +115,40 @@ body * {
 
 .js-display-table div{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
+	min-width: 300px;
+	max-height: 260px;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
 }
 .js-display-table div div {
 	flex-direction: row;
+	justify-content: space-between;
+	background-color: white;
+	margin: 2px;
 }
 .js-display-table div div p{
-	padding: 5px;
+/* 	border: 1px solid white; */
+	padding: 5px 10px;
+	margin: 0;
+}
+.js-display-table div div p:nth-child(1){
+	background-color: rgb(220, 230, 250);
+	text-transform: capitalize;
 /* 	border: 1px solid white; */
 	margin: 0;
+}
+
+.js-display-table .button {
+	padding: 5px 10px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: black;
+}
+.js-display-table .button:active {
+	color: black;
+}
+.js-display-table .button:focus {
+	border: none;
 }
