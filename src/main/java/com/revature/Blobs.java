@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,7 @@ import java.sql.Statement;
 public class Blobs {
 	public static ConnFactory cf =ConnFactory.getInstance();
 	
+	//to insert the blob into the databse
 	public void writeBlob(String fileName) throws FileNotFoundException 
 	{
 		Connection conn = cf.getConnection();
@@ -35,26 +37,30 @@ public class Blobs {
 	}
 	
 	
-	
-	public void readBlob(String fileName) throws FileNotFoundException, SQLException 
+	//to read in the blob from the database; this will download it into local
+	public void readBlob(String inputFile,String outputFile ,double id) throws FileNotFoundException, SQLException 
 	{
 		Connection conn = cf.getConnection();
 		Statement mystate = null;
 		ResultSet rs = null;
 		InputStream input = null;
+		PreparedStatement ps = null;
 		
 		
 		try 
 		{
-			mystate = conn.createStatement();
 			String sql = "select forms from forms_table where form_id = ?";
-			rs = mystate.executeQuery(sql);
-			File theFile = new File("Forms_from_DB.pdf");
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, id);
+			rs = ps.executeQuery();
+			
+
+			File theFile = new File(outputFile); //outputFile == the name it will be downloaded to.
 			FileOutputStream output = new FileOutputStream(theFile);
 			
 			if(rs.next()) 
 			{
-				input = rs.getBinaryStream(fileName);
+				input = rs.getBinaryStream(inputFile); //taking in the blob file from the database
 				System.out.println("Reading...");
 				System.out.println(sql);
 				
