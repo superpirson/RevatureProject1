@@ -522,19 +522,19 @@ END DELETE_form;
 
 
 create or replace procedure view_forms
-(vc_cursor out sys_refcursor, f_id in number, report_to in varchar2)
+(vc_cursor out sys_refcursor, a_id in number, report_to in varchar2)
 as
 begin
     open vc_cursor for 
-    select form_id from forms_table 
-    full outer join accounts_table 
+    select * from forms_table 
+    join accounts_table 
     on forms_table.submitted_by = accounts_table.account_id
-    where form_id = f_id and reportsto = report_to;
+    where account_id = a_id and reportsto = report_to;
     commit;
 end;
 
 variable rc refcursor;
-exec view_forms(:rc, 90, 'DHA');
+exec view_forms(:rc, 103, 'DHA');
 print rc;
 
 
