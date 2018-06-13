@@ -27,9 +27,9 @@ public class ConnFactory{
 		nameMapsToSQL.put("description", "description");
 		nameMapsToSQL.put("last-name", "lName");
 		nameMapsToSQL.put("grading-format", "grade");
-		nameMapsToSQL.put("event-type", "");
-		nameMapsToSQL.put("reason", "reason");
-		nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("event-type", "event_type");
+		nameMapsToSQL.put("reason-change", "reason_change");
+		nameMapsToSQL.put("approval", "reason");
 		nameMapsToSQL.put("reason", "reason");
 		//Build the inverse
 		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
