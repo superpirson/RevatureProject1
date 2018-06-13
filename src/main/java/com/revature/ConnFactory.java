@@ -29,7 +29,7 @@ public class ConnFactory{
 		nameMapsToSQL.put("grading-format", "grade");
 		nameMapsToSQL.put("event-type", "event_type");
 		nameMapsToSQL.put("reason-change", "reason_change");
-		nameMapsToSQL.put("approval", "reason");
+		nameMapsToSQL.put("reason-denial", "reason_denial");
 		nameMapsToSQL.put("reason", "reason");
 		//Build the inverse
 		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
