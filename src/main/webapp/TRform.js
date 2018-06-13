@@ -10,8 +10,10 @@ var submitLogin = function () {
     xhr.open('POST', 'login');
     document.get
     var formData = new FormData(document.getElementsByClassName("login-form")[0]);
+    xhr.onload = function () {
+    	
+    }
     xhr.send(formData);
-    return false;
 }
 var getForm = function (formID) {
     var xhr = new XMLHttpRequest();
