@@ -100,7 +100,7 @@ var updateFormsTable = function () {
             var edit = document.createElement('a');
             document.getElementsByClassName("form-" + (i + 1))[0].appendChild(edit).innerHTML = "edit";
             edit.classList.add("button")
-            edit.href = "/TRForm?formID=" + data.forms[i].FORM_ID;
+            edit.href = "RevatureProject1/TRForm?formID=" + data.forms[i].FORM_ID;
         }
     }
     xhr.send();
