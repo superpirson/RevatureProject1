@@ -11,6 +11,7 @@ var submitLogin = function () {
     document.get
     var formData = new FormData(document.getElementsByClassName("login-form")[0]);
     xhr.send(formData);
+    return false;
 }
 var getForm = function (formID) {
     var xhr = new XMLHttpRequest();

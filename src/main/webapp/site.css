@@ -50,7 +50,7 @@ body * {
     min-height: 50px;
 }
 
-.button {
+button, .button {
     max-width: 100px;
     padding: 10px 15px;
     border-radius: 3px;
@@ -60,11 +60,11 @@ body * {
     cursor: pointer;
 }
 
-.button:hover {
+button, .button:hover {
     background-color: rgb(127, 156, 198);
 }
 
-.button:active {
+button, .button:active {
     background-color: rgb(113, 143, 186);
 }
 
