@@ -10,7 +10,7 @@ type of event; work-related justification.  -->
 
 <body>
     <div>
-        <form class="form input-form" onload="loadLogin()" onsubmit="submitForm()">
+        <form class="form input-form" onsubmit="submitForm("TRform", "input-form")">
             <div>
             <label for="first-name" >First Name</label>
             <input required type="text" name="first-name" placeholder="Enter first name"></input>
@@ -78,7 +78,7 @@ type of event; work-related justification.  -->
             <label for="file">Files</label>
             <input type="file" class="files" name="files" multiple/>
 
-            <button type="submit">Submit</button>
+            <button type="submit" value="login">Submit</button>
             </div>
             
         </form>

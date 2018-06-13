@@ -1,14 +1,7 @@
-var submitForm = function () {
+var submitForm = function (url, form) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'TRform');
-    var formData = new FormData(document.getElementsByClassName("input-form")[0]);
-    xhr.send(formData);
-}
-
-var submitLogin = function () {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'login');
-    var formData = new FormData(document.getElementsByClassName("login-form")[0]);
+    xhr.open('POST', url);
+    var formData = new FormData(document.getElementsByClassName(form)[0]);
     xhr.send(formData);
 }
 var loadLogin = function () {//window.location.href
@@ -23,7 +16,6 @@ var getForm = function (formID, func) {
     xhr.onload = func;
     xhr.send()
 }
-
 var updateFormsTable = function () {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'FormInfo?formID=');
