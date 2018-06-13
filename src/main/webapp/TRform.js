@@ -12,10 +12,18 @@ var submitLogin = function () {
     var formData = new FormData(document.getElementsByClassName("login-form")[0]);
     xhr.send(formData);
 }
-
-var getForm = function () {
+var getForm = function (formID) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'FormInfo?formID=90');
+    xhr.open('GET', 'FormInfo?formID=' + formID);
+    xhr.onload = function () {
+    	
+    }
+    xhr.send()
+}
+
+var updateFormsTable = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'FormInfo?formID=');
     xhr.onload = function () {
         var data = JSON.parse(xhr.response);
         console.log(data);
