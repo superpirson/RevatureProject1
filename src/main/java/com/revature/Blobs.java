@@ -17,16 +17,17 @@ public class Blobs {
 	public static ConnFactory cf =ConnFactory.getInstance();
 	
 	//to insert the blob into the databse
-	public void writeBlob(String fileName) throws FileNotFoundException 
+	public void writeBlob(String fileName, Double id) throws FileNotFoundException 
 	{
 		Connection conn = cf.getConnection();
 		
 		try 
 		{
-			CallableStatement myCall = conn.prepareCall(" {call w_blob(?)} ");
+			CallableStatement myCall = conn.prepareCall(" {call w_blob(?,?)} ");
 			File theFile = new File(fileName);
 			FileInputStream input = new FileInputStream(theFile);
 			myCall.setBinaryStream(1, input);
+			myCall.setDouble(2, id);
 			myCall.execute();
 			System.out.println("We have the file");
 		} 

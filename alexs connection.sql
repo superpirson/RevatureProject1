@@ -542,7 +542,7 @@ print rc;
 
 -- procedure to insert the blob file
 create or replace procedure w_blob
-(f in varchar2, id in number)
+(f in blob, id in number)
 as
 begin
 update forms_table set forms = f where form_id = id;
