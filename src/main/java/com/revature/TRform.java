@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
+import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,7 +53,38 @@ public class TRform extends HttpServlet {
 		for( Part p : request.getParts()) {
 			form.put(p.getName(),convertStreamToString(p.getInputStream()));
 		}
-	
+		
+		
+		 Connection conn = cf.getConnection();
+			String[] primaryKeys = new String[1];
+			primaryKeys[0] = "form_id";
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("update forms_table set ");
+			boolean seen = false;
+			for (Entry<String, String> f:form.entrySet()) {
+				if (seen) {
+					sql.append(",");
+				}else {seen=true;}
+				sql.append(f.getKey() + "=" + f.getValue());
+			}
+			
+			sql.append("where form_id = ?");
+
+			PreparedStatement ps;
+			ResultSet rs;
+		
+			try {
+				
+					ps = conn.prepareStatement(sql.toString(), primaryKeys);
+					ps.setString(1,  (String) session.getAttribute("editingFormID"));
+					
+				rs = ps.executeQuery();
+			}catch (SQLException s) {
+				
+				s.printStackTrace();
+			}
+				
 		System.out.println("TRform just got a post for username: " + session.getAttribute("username") + " password: " +  session.getAttribute("password")  +" and data: " + form);
 	      
 
