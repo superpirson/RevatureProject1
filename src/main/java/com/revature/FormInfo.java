@@ -108,9 +108,9 @@ public class FormInfo extends HttpServlet {
 				}
 				res.getWriter().append("],");
 				//add in the current user's info for conveince
-				res.getWriter().append("\"username\":"+gBuilder.toJson(userName));
-				res.getWriter().append("\"password\":"+gBuilder.toJson(password));
-				res.getWriter().append("\"accountType\":"+gBuilder.toJson(accountType));
+				res.getWriter().append("\"username\":"+gBuilder.toJson(userName)+",");
+				res.getWriter().append("\"password\":"+gBuilder.toJson(password)+",");
+				res.getWriter().append("\"accountType\":"+gBuilder.toJson(accountType)+",");
 
 				
 				

@@ -115,12 +115,15 @@ public class LoginServer extends HttpServlet {
 		   s.close();
 	   }
 	}
-	public static void checkPasswordAndRedir(HttpServletRequest request, HttpServletResponse response){
+	public static boolean checkPasswordAndRedir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	      HttpSession session = request.getSession(true);
 	      String password=(String) session.getAttribute("password");
 	      if ( password== null|| password.length()<1) {
-	    	  
+	  		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
+	  		rd.forward(request, response);
+	  		return false;
 	      }
+	      return true;
 
 	}
 	
