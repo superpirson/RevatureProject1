@@ -49,7 +49,7 @@ insert into forms_table values(93, 'Goku','Supersayan', 'B*(B+)', date '01-03-18
     'approved', 'dragon ball z', 'new york', 300, null, null, 'tranining','bootcamp',null ,106);
     
 insert into forms_table values(96, 'Matt','Knighten', 'F*(F)', date '06-06-06','No', 'Yes', 'No','Yes', 'Yes',
-    'approved', 'real marine', 'new york', 350, null, null, 'tranining','bootcamp',null ,109);
+    'approved', 'real marine', 'new york', 350, null, null, 'tranining','bootcamp',null ,106);
 
 
 
