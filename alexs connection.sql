@@ -8,7 +8,7 @@ create table accounts_table(account_id number not null, username varchar(13) uni
 create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
     form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason_denial varchar(250), reason_change varchar(250), 
-    reason_reimburse varchar(250),event_type varchar(13) ,primary key(form_id), submitted_by number not null,
+    reason_reimburse varchar(250),event_type varchar(13),forms blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
     
@@ -41,7 +41,7 @@ insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date 
 
 
     insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
-    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp',null ,103);
 
 
 /*
@@ -522,23 +522,33 @@ END DELETE_form;
 
 
 create or replace procedure view_forms
-(vc_cursor out sys_refcursor, f_id in number, report_to in varchar2)
+(vc_cursor out sys_refcursor, a_id in number, report_to in varchar2)
 as
 begin
     open vc_cursor for 
-    select form_id from forms_table 
-    full outer join accounts_table 
+    select * from forms_table 
+    join accounts_table 
     on forms_table.submitted_by = accounts_table.account_id
-    where form_id = f_id and reportsto = report_to;
+    where account_id = a_id and reportsto = report_to;
     commit;
 end;
 
 variable rc refcursor;
-exec view_forms(:rc, 90, 'DHA');
+exec view_forms(:rc, 103, 'DHA');
 print rc;
 
 
 
+
+
+
+
+create or replace procedure w_blob
+(f in varchar2, id in number)
+as
+begin
+insert into forms_table(forms) values(f);
+end w_blob;
 
 
 
