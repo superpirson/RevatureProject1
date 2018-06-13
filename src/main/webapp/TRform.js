@@ -20,14 +20,69 @@ var getForm = function () {
         var data = JSON.parse(xhr.response);
         console.log(data);
         for (var i = 0; i < data.forms.length; i++) {
+        	//create the form div
             document.getElementsByClassName("js-display-table")[0].appendChild(document.createElement("div")).classList.add("form-" + (i + 1));
             for (var prop in data.forms[i]) {
             	if (data.forms[i][prop]) {
+            		var propName;
+            	switch(prop) {
+            	case "FORM_ID":
+            		propName = "form-ID";
+            		break;
+            	case "FNAME":
+            		propName = "first-name";
+            		break;
+            	case "LNAME":
+            		propName = "last-name";
+            		break;
+            	case "GRADE":
+            		propName = "grade";
+        			break;
+            	case "DATE_COMPLETED":
+            		propName = "date";
+            		break;
+            	case "EMPLOYEE_APPROVAL":
+            		propName = "employee-approval";
+            		break;
+            	case "BENCO_APPROVAL":
+            		propName = "benco-approval";
+            		break;
+            	case "DHA_APPROVAL":
+            		propName = "dha-approval";
+            		break;
+            	case "DSA_APPROVAL":
+            		propName = "dsa-approval";
+            		break;
+            	case "GRADES_APPROVAL":
+            		propName = "grade-approval";
+            		break;
+            	case "FORM_STATUS":
+            		propName = "form-status";
+            		break;
+            	case "DESCRIPTION":
+            		propName = "description";
+            		break;
+            	case "LOCATION":
+            		propName = "location";
+            		break;
+            	case "COST":
+            		propName = "cost";
+            		break;
+            	case "REASON_REIMBURSE":
+            		propName = "reimburse-reason";
+            		break;
+            	case "EVENT_TYPE":
+            		propName = "event-type";
+            		break;
+            	case "SUBMITTED_BY":
+            		propName = "submitted-by";
+            		break;
+            	}
             	//create the prop div
-            	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(prop);
+            	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(propName);
             	
             	//fill in the data
-            	document.querySelector("." + [prop]).innerHTML = [prop] + " " + data.forms[i][prop];
+            	document.querySelector("." + propName).innerHTML = propName + " " + data.forms[i][prop];
             	}
             }
         }
