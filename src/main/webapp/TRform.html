@@ -45,12 +45,32 @@ type of event; work-related justification.  -->
             <label for="reason">Reason for Reimbursement</label>
             <textarea required type="textarea" name="reason" placeholder="Enter reason"></textarea>
 
-            <div class="admin">
+            <div class="employee-approve admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="dsa admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="dha admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="benco admin">
+            <input type="radio" name="approval" value="approve">Approve</input>
+            <input type="radio" name="approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="grade-approve admin">
             <input type="radio" name="approval" value="approve">Approve</input>
             <input type="radio" name="approval" value="deny">Deny</input>
             </div>
 
-            <div class="admin">
+            <div class="dsa admin">
             <label for="reason-denial">Reason for Denial</label>
             <textarea type="textarea" name="reason-denial" placeholder="Enter reason for denial"></textarea>
             </div>

@@ -101,3 +101,25 @@ body * {
 .form.input-form .files {
     padding:0;
 }
+
+.js-display-table {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(201, 214, 232);
+}
+.js-display-table, .js-display-table * {
+	border-radius: 3px;
+}
+
+.js-display-table div{
+	display: flex;
+	flex-direction: column;
+}
+.js-display-table div div {
+	flex-direction: row;
+}
+.js-display-table div div p{
+	padding: 5px;
+/* 	border: 1px solid white; */
+	margin: 0;
+}
