@@ -85,7 +85,7 @@ var updateFormsTable = function () {
             	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(propName);
             	
             	//fill in the data
-            	document.querySelector("." + propName).innerHTML = '<p>' + propName + '</p><p>' + data.forms[i][prop] + '</p>';
+            	document.querySelector("." + "form-" + (i + 1) + " ." + propName).innerHTML = '<p>' + propName + '</p><p>' + data.forms[i][prop] + '</p>';
             	}
             }
             //the edit button
