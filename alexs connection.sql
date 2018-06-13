@@ -551,3 +551,23 @@ end w_blob;
 
 
 
+
+
+
+
+-- function to calculate the percentage of the reimbursement
+create or replace function calc_reimbursement_percent
+(f_id in number, percentage in number)
+RETURN NUMBER AS 
+reimbursement_total number(10, 2);
+begin
+select cost into reimbursement_total
+from forms_table where form_id = f_id;
+return (reimbursement_total*percentage);
+end;
+/
+
+select calc_reimbursement_percent(90, .80) from dual;
+
+
+
