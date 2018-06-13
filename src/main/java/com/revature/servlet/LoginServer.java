@@ -14,34 +14,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-/**
- * Servlet implementation class LoginServer
- */
+
+
 @MultipartConfig
 public class LoginServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static com.revature.ConnFactory cf =com.revature.ConnFactory.getInstance();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      Connection conn = cf.getConnection();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+	     Connection conn = cf.getConnection();
 
 		//Create a new session cookie!
 	      HttpSession session = request.getSession(true);
 	    
 	      
-	      System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
+	    System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
 		response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("login.html");
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//setup response text
 		//request.getParameter(name)
