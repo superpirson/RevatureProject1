@@ -34,19 +34,17 @@ insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesa
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com');   
 
 
-insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
-    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+--insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
+--    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
 
     
 
 
-    insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
+insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
     'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp',null ,103);
 
 
-/*
-insert into forms_table values(form_id_seq.nextval, 'Joe', 'Coppola', 85, date '03-05-05', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Pending', 'reimbursement for training', 'Tampa', 250, 
-'Travel', ); */
+
 
 
 /*              procedures for the forms_table          */
@@ -390,12 +388,12 @@ end update_reason;
 create or replace procedure insert_trform
 (p_id in number, p_first in varchar2, p_last in varchar2, p_grade in varchar2, p_date_completed in date, p_emp_app in varchar2, p_benco_app in varchar2,
 p_dha_app in varchar2, p_dsa_app in varchar2, p_grades_app in varchar2, p_form_status in varchar2, p_description in varchar2, p_location in varchar2, 
-p_cost in varchar2, p_reason_denial in varchar2, p_reason_change in varchar2, p_reason_reimbursement in varchar2, p_event_type in varchar2 ,p_submitted_by in number)
+p_cost in varchar2, p_reason_denial in varchar2, p_reason_change in varchar2, p_reason_reimbursement in varchar2, p_event_type in varchar2,p_blob in blob ,p_submitted_by in number)
 as
 begin
 insert into forms_table
 values (form_id_seq.nextval, p_first, p_last, p_grade, p_date_completed, p_emp_app, p_benco_app, p_dha_app, p_dsa_app, p_grades_app,
-p_form_status, p_description, p_location, p_cost, p_reason_denial, p_reason_change, p_reason_reimbursement, p_event_type, p_submitted_by);
+p_form_status, p_description, p_location, p_cost, p_reason_denial, p_reason_change, p_reason_reimbursement, p_event_type,p_blob ,p_submitted_by);
 end insert_trform;
 
 
@@ -542,13 +540,14 @@ print rc;
 
 
 
-
+-- procedure to insert the blob file
 create or replace procedure w_blob
 (f in varchar2, id in number)
 as
 begin
-insert into forms_table(forms) values(f);
+update forms_table set forms = f where form_id = id;
 end w_blob;
+
 
 
 

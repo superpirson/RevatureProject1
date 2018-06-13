@@ -80,14 +80,25 @@ public class LoginServer extends HttpServlet {
 				return;
 			}
 			String DBpass=rs.getString("password");
-			if (DBpass == null) {
+			if (DBpass == null || password== null || password.length()<1) {
 				System.err.println("ERROR! Null password!");
 				return;
 			}
+
+			
 			if (DBpass.equals(password)) {
+				//Establish user data in cookie
+				session.setAttribute("account_type", rs.getString("account_type"));
+				session.setAttribute("fname", rs.getString("fname"));
+				session.setAttribute("lname", rs.getString("lname"));
+				session.setAttribute("reportsto", rs.getString("reportsto"));
 				RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
 				rd.forward(request, response);
+			}else {
+			      session.setAttribute("password", null);
 			}
+			
+
 			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -104,4 +115,15 @@ public class LoginServer extends HttpServlet {
 		   s.close();
 	   }
 	}
+	public static void checkPasswordAndRedir(HttpServletRequest request, HttpServletResponse response){
+	      HttpSession session = request.getSession(true);
+	      String password=(String) session.getAttribute("password");
+	      if ( password== null|| password.length()<1) {
+	    	  
+	      }
+
+	}
+	
+	
+	
 }
