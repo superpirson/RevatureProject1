@@ -41,7 +41,7 @@ insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date 
 
 
     insert into forms_table values(90, 'Super-Joe','Coppola', 'A*(A+)', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',
-    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp', 103);
+    'pending', 'revature', 'tampa', 250, null, null, 'tranining','bootcamp',null ,103);
 
 
 /*
