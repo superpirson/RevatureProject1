@@ -8,7 +8,7 @@ type of event; work-related justification.  -->
     <script type="text/javascript" src="TRform.js"></script>
 </head>
 
-<body>
+<body onload="loadLogin()" >
     <div>
         <form class="form input-form" onsubmit="submitForm("TRform", "input-form")">
             <div>
@@ -36,7 +36,7 @@ type of event; work-related justification.  -->
             <label for="last-name">Last Name</label>
             <input required type="text" name="last-name" placeholder="Enter last name"></input>
 
-            <label for="grading-format">Grade</label>
+            <label for="grade">Grade</label>
             <input required type="text" name="grade" placeholder="Enter grade"></input>
 
             <label for="event-type">Type of Event</label>

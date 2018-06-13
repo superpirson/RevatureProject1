@@ -122,6 +122,7 @@ button:active, .button:active {
 	flex-wrap: wrap;
 	margin-bottom: 20px;
 }
+
 .js-display-table div div {
 	flex-direction: row;
 	justify-content: space-between;
