@@ -48,6 +48,9 @@ public class FormInfo extends HttpServlet {
 
 	public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 	      HttpSession session = req.getSession(true);
+	      String userName = (String) session.getAttribute("username");
+	      String password=(String) session.getAttribute("password");
+	      String accountType = (String) session.getAttribute("account_type");
 //	     / StringBuilder s = new StringBuilder();
 		PrintWriter out = res.getWriter();
 		  res.setContentType("text/plain");
@@ -59,7 +62,7 @@ public class FormInfo extends HttpServlet {
 		      Connection conn = cf.getConnection();
 				String[] primaryKeys = new String[1];
 				primaryKeys[0] = "form_id";
-				String sql = "select * from forms_table where form_id= ANY ?";
+				String sql = "select * from forms_table where form_id=  ?";
 
 				PreparedStatement ps;
 				ResultSet rs;
@@ -104,7 +107,13 @@ public class FormInfo extends HttpServlet {
 
 				}
 				res.getWriter().append("],");
+				//add in the current user's info for conveince
+				res.getWriter().append("\"username\":"+gBuilder.toJson(userName)+",");
+				res.getWriter().append("\"password\":"+gBuilder.toJson(password)+",");
+				res.getWriter().append("\"accountType\":"+gBuilder.toJson(accountType)+",");
 
+				
+				
 				//Begin Displaying Visable users
 				//TODO:: Implement Raf's thing
 				

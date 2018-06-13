@@ -82,7 +82,7 @@ var getForm = function () {
             	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(propName);
             	
             	//fill in the data
-            	document.querySelector("." + propName).innerHTML = propName + " " + data.forms[i][prop];
+            	document.querySelector("." + propName).innerHTML = '<p>' + propName + '</p><p>' + data.forms[i][prop] + '</p>';
             	}
             }
         }

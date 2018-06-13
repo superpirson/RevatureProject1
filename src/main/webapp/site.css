@@ -101,3 +101,41 @@ body * {
 .form.input-form .files {
     padding:0;
 }
+
+.js-display-table {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(201, 214, 232);
+	padding: 20px;
+	margin: 50px;
+}
+.js-display-table, .js-display-table * {
+	border-radius: 3px;
+}
+
+.js-display-table div{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	min-width: 300px;
+	max-height: 260px;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+}
+.js-display-table div div {
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: white;
+	margin: 2px;
+}
+.js-display-table div div p{
+/* 	border: 1px solid white; */
+	padding: 5px 10px;
+	margin: 0;
+}
+.js-display-table div div p:nth-child(1){
+	background-color: rgb(220, 230, 250);
+	text-transform: capitalize;
+/* 	border: 1px solid white; */
+	margin: 0;
+}
