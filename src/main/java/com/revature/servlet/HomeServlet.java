@@ -38,7 +38,7 @@ public class HomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		System.out.println("in doPost of home serverlet");
+		System.out.println("in doPost of homeserverlet");
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 		pw.write("<h3> ROLL TIED</h3>");

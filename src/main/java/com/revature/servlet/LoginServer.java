@@ -26,14 +26,19 @@ public class LoginServer extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	     // Connection conn = cf.getConnection();
 	     Connection conn = cf.getConnection();
 
 		//Create a new session cookie!
 	     HttpSession session = request.getSession(true);
 	    
-	      
-	      //System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
+	     String password=(String) session.getAttribute("password");
+	      if ( !(password== null|| password.length()<1)) {
+				response.sendRedirect("home"); 
+				return;
+
+	      }
 		//response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		//doPost(request, response);
 	    System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
@@ -44,11 +49,20 @@ public class LoginServer extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		System.out.println("In doPost of loginserver!");
+
+		RequestDispatcher rd = request.getRequestDispatcher("home.html");
+	      rd.forward(request, response);
+
+	   if (true) return;
+	   //*/
+	   
+	   
 		//setup response text
 		//request.getParameter(name)
 		//
 		/*
-		System.out.println("In doPost of loginserver! got:");
 		while(request.getReader().ready()) {
 			System.out.println(request.getReader().readLine());
 			
@@ -61,6 +75,7 @@ public class LoginServer extends HttpServlet {
 
 		System.out.println("Loginserver just got a post for username: " + userName + " password: " + password + " and user currently has username: "+session.getAttribute("username") + " password: " +  session.getAttribute("password") );
 	      //Login a new User
+		
 	      session.setAttribute("username", userName);
 	      session.setAttribute("password", password);
 	      
@@ -97,9 +112,8 @@ public class LoginServer extends HttpServlet {
 				session.setAttribute("fname", rs.getString("fname"));
 				session.setAttribute("lname", rs.getString("lname"));
 				session.setAttribute("reportsto", rs.getString("reportsto"));
+				response.sendRedirect("home"); 
 				
-				
-		  		
 		  		
 			}else {
 			      session.setAttribute("password", null);
@@ -112,10 +126,10 @@ public class LoginServer extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("sending redir to home");
-			RequestDispatcher rd = request.getRequestDispatcher("home");
-		    rd.forward(request, response);
-	  		//response.sendRedirect("home"); 
+			//System.out.println("sending redir to home");
+			//forget Redirecting!!!!
+	
+	  		//
 
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
