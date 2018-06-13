@@ -31,7 +31,9 @@ cache 7;
 
 
 insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesauce', 'Rafael', 'Mariano', 'DHA', 'DSA', 'rafael@idk.com');   
-insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com');   
+insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com'); 
+insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
+
 
 
 --insert into forms_table values(form_id_seq.nextval, 'Joe','Coppola', 'A+', date '05-09-18','Yes', 'Yes', 'Yes','Yes', 'Yes',

@@ -29,7 +29,7 @@ public class Blobs {
 			myCall.setBinaryStream(1, input);
 			myCall.setDouble(2, id);
 			myCall.execute();
-			System.out.println("We have the file");
+			System.out.println("We have the file!");
 		} 
 		catch (SQLException e) 
 		{
