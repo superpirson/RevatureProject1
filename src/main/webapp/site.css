@@ -112,7 +112,7 @@ form, .form.input-form {
 	display: flex;
 	flex-direction: column;
 	background-color: rgb(201, 214, 232);
-	padding: 20px;
+	padding: 10px;
 	margin: 50px;
 }
 .js-display-table, .js-display-table * {
@@ -128,7 +128,12 @@ form, .form.input-form {
 	flex-wrap: wrap;
 	margin-bottom: 20px;
 }
-
+.js-display-table > div {
+	padding: 10px;
+}
+.js-display-table > :nth-of-type(2n) {
+	background-color: rgba(50,50,50, 0.1);
+}
 .js-display-table div div {
 	flex-direction: row;
 	justify-content: space-between;
