@@ -68,7 +68,7 @@ public class TRform extends HttpServlet {
 		 Connection conn = cf.getConnection();
 
 		   session.setAttribute("editingFormID" ,request.getParameter("formID"));
-		   System.out.println("setting formID to " +request.getParameter("formID"));
+		   System.out.println("got formID as " +request.getParameter("formID"));
 		   if(request.getParameter("formID") == null || request.getParameter("formID").length()==0) {
 			   
 
@@ -156,7 +156,7 @@ e.printStackTrace();
 					ps.setString(17, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("fname")), null)));
 					ps.setString(18, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("lname")), null)));
 
-					ps.setInt(19,  (Integer) session.getAttribute("editingFormID"));
+					ps.setInt(19,  Integer.parseInt((String) session.getAttribute("editingFormID")));
 					//System.out.println(ps);
 				rs = ps.executeQuery();
 			}catch (SQLException s) {
