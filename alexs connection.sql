@@ -9,7 +9,7 @@ create table accounts_table(account_id number not null, username varchar(1000) u
 create  table forms_table(form_id number not null, fName varchar(1000), lName varchar(1000), grade varchar(1000), date_completed date, 
     employee_approval varchar(1000), benCo_approval varchar(1000), dha_approval varchar(1000), dsa_approval varchar(1000), grades_approval varchar(1000),
     form_status varchar(1000), description varchar(1000), location varchar(1000), cost number,CONSTRAINT chk_cost check (cost>=0 and cost<1000), reason_denial varchar(1000), reason_change varchar(1000), 
-    reason_reimburse varchar(250),event_type varchar(13),files blob ,primary key(form_id), submitted_by number not null,
+    reason_reimburse varchar(1000),event_type varchar(1000),files blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
     
