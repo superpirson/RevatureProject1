@@ -92,7 +92,10 @@ public class TRform extends HttpServlet {
 		        SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy");
 
 					ps = conn.prepareStatement(sql.toString(), primaryKeys);
-					ps.setString(1,  convertStreamToString(request.getPart(nameMapsInverse.get("grade")).getInputStream()));
+					//Expanded for debugging reassons
+					String nameOfPart = nameMapsInverse.get("grade");
+					Part part = request.getPart(nameOfPart);
+					ps.setString(1,  convertStreamToString(part.getInputStream()));
 
 					try {
 						ps.setDate(2,  new java.sql.Date(dateParser.parse(convertStreamToString(request.getPart(nameMapsInverse.get("date_completed")).getInputStream())).getTime()));

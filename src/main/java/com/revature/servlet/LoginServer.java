@@ -29,17 +29,24 @@ public class LoginServer extends HttpServlet {
 
 	static {
 		nameMapsToSQL.put("first-name", "fName");
+		nameMapsToSQL.put("last-name", "lName");
 		nameMapsToSQL.put("date", "date_completed");
 		nameMapsToSQL.put("cost", "cost");
-		nameMapsToSQL.put("reason", "reason");
+		//nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("employee-approval", "EMPLOYEE_APPROVAL");
+		nameMapsToSQL.put("benco-approval", "BENCO_APPROVAL");
+		nameMapsToSQL.put("dha-approval", "DHA_APPROVAL");
+		nameMapsToSQL.put("dsa-approval", "DSA_APPROVAL");
+		nameMapsToSQL.put("grade-approval", "GRADES_APPROVAL");
+		nameMapsToSQL.put("form-status", "FORM_STATUS");
 		nameMapsToSQL.put("location", "location");
 		nameMapsToSQL.put("description", "description");
-		nameMapsToSQL.put("last-name", "lName");
-		nameMapsToSQL.put("grading-format", "grade");
-		nameMapsToSQL.put("event-type", "event_type");
+		nameMapsToSQL.put("reimburse-reason", "REASON_REIMBURSE");
+
+		nameMapsToSQL.put("event-type", "EVENT_TYPE");
 		nameMapsToSQL.put("reason-change", "reason_change");
 		nameMapsToSQL.put("reason-denial", "reason_denial");
-		nameMapsToSQL.put("reason", "reason");
+
 		//Build the inverse
 		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
 			nameMapsInverse.put(e.getValue(), e.getKey());
@@ -59,7 +66,7 @@ public class LoginServer extends HttpServlet {
 	     String password=(String) session.getAttribute("password");
 	      if ( !(password== null|| password.length()<1)) {
 	    	  //User is already logged in (Yes we have no security)
-	    	  if (request.getAttribute("logout") != null && request.getAttribute("logout").equals("true")) {
+	    	  if (request.getAttribute("logout") != null && request.getParameter("logout").equals("true")) {
 	    		  //user wants to logout
 					System.out.println("Logging out  " + session.getId() + " from username "+session.getAttribute("username"));
 
