@@ -4,6 +4,12 @@ var submitForm = function (url, form) {
     var formData = new FormData(document.getElementsByClassName(form)[0]);
     xhr.send(formData);
 }
+var TRForm = function(url, form) {
+	var url = new URL(window.location.href);
+	var formID = url.searchParams.get("formID");
+	if (!formID) { formID = ""; }
+	submitForm('TRform?formID=' + formID, 'input-form')
+}
 var submitLogin = function() {
 	submitForm('login', 'login-form');
 	location.reload();
