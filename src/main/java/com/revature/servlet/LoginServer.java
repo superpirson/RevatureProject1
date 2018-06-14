@@ -66,7 +66,7 @@ public class LoginServer extends HttpServlet {
 	     String password=(String) session.getAttribute("password");
 	      if ( !(password== null|| password.length()<1)) {
 	    	  //User is already logged in (Yes we have no security)
-	    	  if (request.getAttribute("logout") != null && request.getParameter("logout").equals("true")) {
+	    	  if (request.getParameter("logout") != null ) {//&& request.getParameter("logout").equals("true")) {
 	    		  //user wants to logout
 					System.out.println("Logging out  " + session.getId() + " from username "+session.getAttribute("username"));
 
