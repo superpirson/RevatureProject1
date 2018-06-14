@@ -188,7 +188,6 @@ form, .form.input-form {
 	background-color: rgb(201, 214, 232);
 	color: black;
 }
-.input-form div.child, .js-display-table div div  {
-	min-width: 0;
+.input-form div.child, .js-display-table div div {
     flex: 0 0 20%;
-} 
+}

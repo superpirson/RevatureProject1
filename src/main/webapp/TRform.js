@@ -113,7 +113,7 @@ var loadForm = function () {
 var updateFormsTable = function () {
     getForm('', function(data) {
         for (var i = 0; i < data.forms.length; i++) {
-        	//create the form div
+        	// create the form div
             document.getElementsByClassName("js-display-table")[0].appendChild(document.createElement("div")).classList.add("form-" + (i + 1));
             for (var prop in data.forms[i]) {
             	if (data.forms[i][prop]) {
@@ -177,26 +177,25 @@ var updateFormsTable = function () {
             		propName = "reason-change";
             		break;
             	}
-            	//create the prop div
+            	// create the prop div
             	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(propName);
             	
-            	//fill in the data
+            	// fill in the data
             	document.querySelector("." + "form-" + (i + 1) + " ." + propName).innerHTML = '<p>' + propName + '</p><p>' + data.forms[i][prop] + '</p>';
             	}
             }
-          //create the prop div
+            // create the prop div
         	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add("reimbursement-amount");
         	
-        	//fill in the data
-        	document.querySelector("." + "form-" + (i + 1) + " .reimbursement amount").innerHTML += '<p>' + 'Reimbursement Amount' + '</p><p>' + "dummyda" + '</p>';
-        	}
-            //the edit button
+        	// fill in the data
+        	document.querySelector(".form-" + (i + 1) + " .reimbursement-amount").innerHTML += '<p>Reimbursement Amount</p><p>' + "da" + '</p>';
+        	
+            // the edit button
             var edit = document.createElement('a');
             document.getElementsByClassName("form-" + (i + 1))[0].appendChild(edit).innerHTML = "edit";
             edit.classList.add("button");
 
             edit.href = "TRform?formID=" + data.forms[i].FORM_ID;
-
-        }
+       }
     });
 }
