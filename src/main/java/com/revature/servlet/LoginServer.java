@@ -26,31 +26,33 @@ public class LoginServer extends HttpServlet {
 	
 	public static Hashtable<String, String> nameMapsToSQL= new Hashtable<String, String>();
 	public static  Hashtable<String, String> nameMapsInverse= new Hashtable<String, String>();
-
 	static {
-		nameMapsToSQL.put("first-name", "fName");
-		nameMapsToSQL.put("last-name", "lName");
-		nameMapsToSQL.put("date", "date_completed");
-		nameMapsToSQL.put("cost", "cost");
-		//nameMapsToSQL.put("reason", "reason");
-		nameMapsToSQL.put("employee-approval", "EMPLOYEE_APPROVAL");
-		nameMapsToSQL.put("benco-approval", "BENCO_APPROVAL");
-		nameMapsToSQL.put("dha-approval", "DHA_APPROVAL");
-		nameMapsToSQL.put("dsa-approval", "DSA_APPROVAL");
-		nameMapsToSQL.put("grade-approval", "GRADES_APPROVAL");
-		nameMapsToSQL.put("form-status", "FORM_STATUS");
-		nameMapsToSQL.put("location", "location");
-		nameMapsToSQL.put("description", "description");
-		nameMapsToSQL.put("reimburse-reason", "REASON_REIMBURSE");
+		nameMapsToSQL.put("first-name", "fName".toLowerCase());
+		nameMapsToSQL.put("last-name", "lName".toLowerCase());
+		nameMapsToSQL.put("date", "date_completed".toLowerCase());
+		nameMapsToSQL.put("cost", "cost".toLowerCase());
+		nameMapsToSQL.put("grade", "GRADE".toLowerCase());
+		nameMapsToSQL.put("employee-approval", "EMPLOYEE_APPROVAL".toLowerCase());
+		nameMapsToSQL.put("benco-approval", "BENCO_APPROVAL".toLowerCase());
+		nameMapsToSQL.put("dha-approval", "DHA_APPROVAL".toLowerCase());
+		nameMapsToSQL.put("dsa-approval", "DSA_APPROVAL".toLowerCase());
+		nameMapsToSQL.put("grade-approval", "GRADES_APPROVAL".toLowerCase());
+		nameMapsToSQL.put("form-status", "FORM_STATUS".toLowerCase());
+		nameMapsToSQL.put("location", "location".toLowerCase());
+		nameMapsToSQL.put("description", "description".toLowerCase());
+		nameMapsToSQL.put("reimburse-reason", "REASON_REIMBURSE".toLowerCase());
 
-		nameMapsToSQL.put("event-type", "EVENT_TYPE");
-		nameMapsToSQL.put("reason-change", "reason_change");
-		nameMapsToSQL.put("reason-denial", "reason_denial");
+		nameMapsToSQL.put("event-type", "EVENT_TYPE".toLowerCase());
+		nameMapsToSQL.put("reason-change", "reason_change".toLowerCase());
+		nameMapsToSQL.put("reason-denial", "reason_denial".toLowerCase());
+		nameMapsToSQL.put("files", "files".toLowerCase());
+
 
 		//Build the inverse
 		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
 			nameMapsInverse.put(e.getValue(), e.getKey());
 		}
+		System.out.println(nameMapsToSQL + " inv = " + nameMapsInverse);
 	}
 	private static final long serialVersionUID = 1L;
 	public static com.revature.ConnFactory cf =com.revature.ConnFactory.getInstance();
@@ -171,7 +173,10 @@ public class LoginServer extends HttpServlet {
 		//request.getRequestDispatcher("home.html").forward(request, response);
 	}
 	public static String convertStreamToString(java.io.InputStream is) {
-		 java.util.Scanner s =null;
+		if(is == null) {
+			return null;
+		}
+		java.util.Scanner s =null;
 		try {s= new java.util.Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
 	   }finally {

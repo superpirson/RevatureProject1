@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.sql.Statement;
 public class Blobs {
 	public static ConnFactory cf =ConnFactory.getInstance();
 	
-	//to insert the blob into the databse
+	//to insert the blob into the database
 	public void writeBlob(String fileName, Double id) throws FileNotFoundException 
 	{
 		Connection conn = cf.getConnection();
@@ -29,7 +30,7 @@ public class Blobs {
 			myCall.setBinaryStream(1, input);
 			myCall.setDouble(2, id);
 			myCall.execute();
-			System.out.println("We have the file!");
+			System.out.println(fileName+" has been received.");
 		} 
 		catch (SQLException e) 
 		{
@@ -38,8 +39,8 @@ public class Blobs {
 	}
 	
 	
-	//to read in the blob from the database; this will download it into local
-	public void readBlob(String inputFile,String outputFile ,double id) throws FileNotFoundException, SQLException 
+	//Reading a Blob from DB and write to a local file
+	public void readBlob(String outputFile ,double id) throws FileNotFoundException, SQLException 
 	{
 		Connection conn = cf.getConnection();
 		Statement mystate = null;
@@ -52,16 +53,17 @@ public class Blobs {
 		{
 			String sql = "select forms from forms_table where form_id = ?";
 			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, id);
+			ps.setDouble(1, id); //which file from form_id we want to read in. 
 			rs = ps.executeQuery();
 			
 
-			File theFile = new File(outputFile+".pdf"); //outputFile == the name it will be downloaded to.
+			File theFile = new File(outputFile+".pdf"); //outputFile == the name of the file it will have when downloaded.
 			FileOutputStream output = new FileOutputStream(theFile);
 			
+			// read the blob and store it in the output file.
 			if(rs.next()) 
 			{
-				input = rs.getBinaryStream(inputFile); //taking in the blob file from the database
+				input = rs.getBinaryStream("files"); //taking in the blob file from the files column
 				System.out.println("Reading...");
 				System.out.println(sql);
 				
@@ -71,11 +73,9 @@ public class Blobs {
 					output.write(buffer);
 				}
 				
-				System.out.println("\nSaved to filepath: "+ theFile.getAbsolutePath());
-				System.out.println("\nCompleted Successfully!");
-				
+				System.out.println("\nSaved to filepath: "+ theFile.getAbsolutePath()); //this will print out the file path where the file has been stored.
+				System.out.println("\nFile downloaded");
 			}
-			
 		} 
 		catch (SQLException e) 
 		{

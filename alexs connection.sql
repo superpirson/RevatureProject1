@@ -1,5 +1,6 @@
 drop table forms_table;
 drop table accounts_table;
+
 -- creating the accounts_table
 create table accounts_table(account_id number not null, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
@@ -7,13 +8,14 @@ create table accounts_table(account_id number not null, username varchar(13) uni
 -- creating the forms_table    
 create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason_denial varchar(250), reason_change varchar(250), 
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
     reason_reimburse varchar(250),event_type varchar(13),files blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
     
     drop sequence account_id_seq ;
     drop sequence form_id_seq;
+    
 -- generates account_id values
 create sequence account_id_seq
 minvalue 100
@@ -33,6 +35,18 @@ cache 7;
 insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesauce', 'Rafael', 'Mariano', 'DHA', 'DSA', 'rafael@idk.com');   
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com'); 
 insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
+
+
+
+
+--create view view_account as
+--select * 
+--from accounts_table;
+--
+--select * from view_account;
+
+
+
 
 
 
@@ -553,7 +567,7 @@ create or replace procedure w_blob
 (f in blob, id in number)
 as
 begin
-update forms_table set forms = f where form_id = id;
+update forms_table set files = f where form_id = id;
 end w_blob;
 
 

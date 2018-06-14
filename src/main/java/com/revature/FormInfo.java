@@ -116,8 +116,9 @@ public class FormInfo extends HttpServlet {
 				res.getWriter().append("\"editingFormID\":"+gBuilder.toJson(editingFormID)+",");
 				
 				
-				//Begin Displaying Visable users
+				//Begin Displaying Visible users
 				//TODO:: Implement Raf's thing
+				Blobs blob = new Blobs();
 				
 				
 				
