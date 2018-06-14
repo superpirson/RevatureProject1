@@ -8,7 +8,7 @@ create table accounts_table(account_id number not null, username varchar(13) uni
 -- creating the forms_table    
 create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0), reason_denial varchar(250), reason_change varchar(250), 
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
     reason_reimburse varchar(250),event_type varchar(13),files blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
