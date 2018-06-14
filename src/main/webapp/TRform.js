@@ -188,7 +188,7 @@ var updateFormsTable = function () {
         	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add("reimbursement-amount");
         	
         	// fill in the data
-        	document.querySelector(".form-" + (i + 1) + " .reimbursement-amount").innerHTML += '<p>Reimbursement Amount</p><p>' + "da" + '</p>';
+        	document.querySelector(".form-" + (i + 1) + " .reimbursement-amount").innerHTML += '<p>Reimbursement Amount</p><p>' + "" + '</p>';
         	
             // the edit button
             var edit = document.createElement('a');
