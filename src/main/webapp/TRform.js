@@ -4,10 +4,15 @@ var submitForm = function (url, form) {
     var formData = new FormData(document.getElementsByClassName(form)[0]);
     xhr.send(formData);
 }
+var TRform = function() {
+	var url = new URL(window.location.href);
+	var formID = url.searchParams.get("formID");
+	if (!formID) { formID = ""; }
+	submitForm('TRform?formID=' + formID, 'input-form');
+}
 var submitLogin = function() {
 	submitForm('login', 'login-form');
 	location.reload();
-	
 }
 var getForm = function (formID, func) {
     var xhr = new XMLHttpRequest();
@@ -183,7 +188,7 @@ var updateFormsTable = function () {
             document.getElementsByClassName("form-" + (i + 1))[0].appendChild(edit).innerHTML = "edit";
             edit.classList.add("button");
 
-            edit.href = "TRForm?formID=" + data.forms[i].FORM_ID;
+            edit.href = "TRform?formID=" + data.forms[i].FORM_ID;
 
         }
     });

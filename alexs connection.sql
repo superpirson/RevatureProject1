@@ -8,7 +8,7 @@ create table accounts_table(account_id number not null, username varchar(1000) u
 -- creating the forms_table    
 create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>=0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
     reason_reimburse varchar(250),event_type varchar(13),files blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
@@ -36,6 +36,7 @@ insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesa
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com'); 
 insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
+insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
 
 
@@ -64,9 +65,6 @@ insert into forms_table values(93, 'Goku','Supersayan', 'B*(B+)', date '01-03-18
     
 insert into forms_table values(96, 'Matt','Knighten', 'F*(F)', date '06-06-06','No', 'Yes', 'No','Yes', 'Yes',
     'approved', 'real marine', 'new york', 350, null, null, 'tranining','bootcamp',null ,106);
-
-
-
 
 
 /*              procedures for the forms_table          */
@@ -417,6 +415,19 @@ insert into forms_table
 values (form_id_seq.nextval, p_first, p_last, p_grade, p_date_completed, p_emp_app, p_benco_app, p_dha_app, p_dsa_app, p_grades_app,
 p_form_status, p_description, p_location, p_cost, p_reason_denial, p_reason_change, p_reason_reimbursement, p_event_type,p_blob ,p_submitted_by);
 end insert_trform;
+
+
+
+create or replace function trform_new(submittedBy number) return number as 
+p_id  number;
+
+begin
+select form_id_seq.nextval  into p_id from dual;
+insert into forms_table
+values (p_id, '','', '', date '05-09-18','F', 'No', 'No','No', 'No',
+    '', '', '', 0, null, null, '','',null ,submittedBy);
+    return(p_id);
+end trform_new;
 
 
 

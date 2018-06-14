@@ -6,13 +6,23 @@ body {
 body * {
     font-size: 16px;
 }
-
 .main-body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 50px;
 }
+.main-body .login-form {
+	width: 500px;
+	height: 200px;
+}
+.main-body .login-form input {
+	border: 0px;
+	border-radius: 3px;
+	background-color: white;
+	padding: 6px;
+}
+
 .form, .input-form {
 	align-items: center;
     justify-content: space-around;
@@ -36,7 +46,7 @@ body * {
     padding: 5px;
     width: 50%;
 }
-.form textarea {
+.form textarea, .form select {
     max-width: 300px;
     min-width: 300px;
     min-height: 50px;
@@ -178,3 +188,11 @@ form, .form.input-form {
 	background-color: rgb(201, 214, 232);
 	color: black;
 }
+form.input-form div.child {
+    display: inline-block;
+    background:blue;
+    margin:10px 0 0 2%;
+    flex-grow: 1;
+    height:100px;
+    width: calc(100% * (1/4) - 10px - 1px);
+} 
