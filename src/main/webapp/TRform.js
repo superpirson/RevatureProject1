@@ -13,6 +13,56 @@ var getForm = function (formID, func) {
     }
     xhr.send()
 }
+var dateParse = function(str) {
+	var date = "";
+	date += str.substring(8,12);
+	date += '-';
+	var month = str.substring(0,3);
+	var newMonth;
+	switch (month) {
+	case "jan":
+		var newMonth = "01";
+		break;
+	case "feb":
+		newMonth = "02";
+		break;
+	case "mar":
+		newMonth = "03";
+		break;
+	case "apr":
+		newMonth = "04";
+		break;
+	case "may":
+		newMonth = "05";
+		break;
+	case "jun":
+		newMonth = "06";
+		break;
+	case "jul":
+		newMonth = "07";
+		break;
+	case "aug":
+		newMonth = "08";
+		break;
+	case "Sep":
+		newMonth = "09";
+		break;
+	case "oct":
+		newMonth = "10";
+		break;
+	case "nov":
+		newMonth = "11";
+		break;
+	case "dec":
+		newMonth = "12";
+		break;
+	}
+	date += newMonth + '-' + str.substring(4,6);
+	return date;
+}
+var reveal = function(className) {
+	Array.from(document.getElementsByClassName(className)).forEach(e => {e.style.display = "inline";});
+}
 var loadForm = function () {
 	var url = new URL(window.location.href);
 	var formID = url.searchParams.get("formID");
@@ -20,7 +70,7 @@ var loadForm = function () {
 		getForm(formID, function(data) {
 			var form = data.forms[0]
 			document.getElementsByName("first-name")[0].value = form.FNAME;
-			document.getElementsByName("date")[0].value = form.DATE_COMPLETED;
+			document.getElementsByName("date")[0].value = dateParse(form.DATE_COMPLETED);
 			document.getElementsByName("cost")[0].value = form.COST;
 			document.getElementsByName("reason-change")[0].value = form.REASONCHANGE;
 			document.getElementsByName("location")[0].value = form.LOCATION;
@@ -30,7 +80,7 @@ var loadForm = function () {
 			document.getElementsByName("event-type")[0].value = form.EVENT_TYPE;
 			document.getElementsByName("reason")[0].value = form.REASON_REIMBURSE;
 			document.getElementsByName("reason-denial")[0].value = form.REASON_DENIAL;
-			console.log(data.accountType);
+
 			switch (data.accountType) {
 			case "Employee":
 				reveal("employee");
@@ -45,13 +95,8 @@ var loadForm = function () {
 				reveal("benco");
 				break;
 			};
-
 			reveal("grade-approve");
 		});
-		
-	}
-	var reveal = function(className) {
-		Array.from(document.getElementsByClassName(className)).forEach(e => {e.style.display = "inline";});
 	}
 }
 var updateFormsTable = function () {
