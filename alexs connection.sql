@@ -2,7 +2,7 @@ drop table forms_table;
 drop table accounts_table;
 
 -- creating the accounts_table
-create table accounts_table(account_id number not null, username varchar(13) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
+create table accounts_table(account_id number not null, username varchar(1000) unique, pass varchar(13), fName varchar(13), lName varchar(13), account_type varchar(13), 
     reportsto varchar(13),email varchar(50), primary key(account_id));
     
 -- creating the forms_table    
