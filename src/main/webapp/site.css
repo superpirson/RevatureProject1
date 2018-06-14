@@ -22,6 +22,7 @@ body * {
 	background-color: white;
 	padding: 6px;
 }
+
 .form, .input-form {
 	align-items: center;
     justify-content: space-around;
@@ -187,3 +188,11 @@ form, .form.input-form {
 	background-color: rgb(201, 214, 232);
 	color: black;
 }
+form.input-form div.child {
+    display: inline-block;
+    background:blue;
+    margin:10px 0 0 2%;
+    flex-grow: 1;
+    height:100px;
+    width: calc(100% * (1/4) - 10px - 1px);
+} 
