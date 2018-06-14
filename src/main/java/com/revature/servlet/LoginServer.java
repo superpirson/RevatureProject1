@@ -151,6 +151,8 @@ public class LoginServer extends HttpServlet {
 				session.setAttribute("fname", rs.getString("fname"));
 				session.setAttribute("lname", rs.getString("lname"));
 				session.setAttribute("reportsto", rs.getString("reportsto"));
+				session.setAttribute("userID", rs.getInt("account_id"));
+
 				response.sendRedirect("home"); 
 				
 		  		

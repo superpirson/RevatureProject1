@@ -8,7 +8,7 @@ create table accounts_table(account_id number not null, username varchar(13) uni
 -- creating the forms_table    
 create  table forms_table(form_id number not null, fName varchar(13), lName varchar(13), grade varchar(13), date_completed date, 
     employee_approval varchar(13), benCo_approval varchar(13), dha_approval varchar(13), dsa_approval varchar(13), grades_approval varchar(13),
-    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
+    form_status varchar(13), description varchar(250), location varchar(50), cost number,CONSTRAINT chk_cost check (cost>=0 and cost<1000), reason_denial varchar(250), reason_change varchar(250), 
     reason_reimburse varchar(250),event_type varchar(13),files blob ,primary key(form_id), submitted_by number not null,
     CONSTRAINT foreign_key_constraint FOREIGN KEY (submitted_by) REFERENCES accounts_table(account_id));
     
@@ -66,9 +66,6 @@ insert into forms_table values(93, 'Goku','Supersayan', 'B*(B+)', date '01-03-18
 insert into forms_table values(96, 'Matt','Knighten', 'F*(F)', date '06-06-06','No', 'Yes', 'No','Yes', 'Yes',
     'approved', 'real marine', 'new york', 350, null, null, 'tranining','bootcamp',null ,106);
 
-
-
-update forms_table set grade=NVL(?,grade), date_completed=NVL(?,date_completed) , employee_approval=NVL(?,employee_approval), benCo_approval=NVL(?,benCo_approval), dha_approval =NVL(?,dha_approval), dsa_approval=NVL(?,dsa_approval), grades_approval=NVL(?,grades_approval) , form_status =NVL(?,form_status), description=NVL(?,description), location=NVL(?,location), cost=NVL(?,cost),reason_denial=NVL(?,reason_denial), reason_change=NVL(?,reason_change), reason_reimburse=NVL(?,reason_reimburse), event_type=NVL(?,event_type), files=NVL(?,files) , fName=NVL(?,fName) lName=NVL(?,lName) where form_id = ?
 
 /*              procedures for the forms_table          */
 
@@ -421,14 +418,15 @@ end insert_trform;
 
 
 
-create or replace procedure trform_new
-(p_id out number)
-as
+create or replace function trform_new(submittedBy number) return number as 
+p_id  number;
+
 begin
-select form_id_seq.nextval from dual into p_id;
+select form_id_seq.nextval  into p_id from dual;
 insert into forms_table
 values (p_id, '','', '', date '05-09-18','F', 'No', 'No','No', 'No',
-    '', '', '', 250, null, null, 'tranining','bootcamp',null ,103);
+    '', '', '', 0, null, null, '','',null ,submittedBy);
+    return(p_id);
 end trform_new;
 
 

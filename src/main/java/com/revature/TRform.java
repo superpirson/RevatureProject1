@@ -3,10 +3,12 @@ package com.revature;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
@@ -26,7 +28,8 @@ import javax.sound.midi.SysexMessage;
 import org.w3c.dom.NamedNodeMap;
 
 import com.google.gson.Gson;
- import static com.revature.servlet.LoginServer.*;
+
+import static com.revature.servlet.LoginServer.*;
  
 @MultipartConfig
 public class TRform extends HttpServlet {
@@ -62,16 +65,37 @@ public class TRform extends HttpServlet {
 			return;
 		}
 		HttpSession session = request.getSession(true);
+		 Connection conn = cf.getConnection();
 
 		   session.setAttribute("editingFormID" ,request.getParameter("formID"));
 		   System.out.println("setting formID to " +request.getParameter("formID"));
-		   if(request.getParameter("formID") == null) {
+		   if(request.getParameter("formID") == null || request.getParameter("formID").length()==0) {
 			   
+
+				String formNew = "{? =call trform_new(?)}";
+				CallableStatement formNewCall;
+
+				try {
+
+					formNewCall = conn.prepareCall(formNew);
+					formNewCall.registerOutParameter (1, Types.INTEGER);
+					formNewCall.setInt(2,(Integer) session.getAttribute("userID") );
+					ResultSet rs = formNewCall.executeQuery();	
+
+						session.setAttribute("editingFormID" ,rs.getInt(1));
+					
+				} catch (SQLException e) {
+System.out.println(e.getLocalizedMessage());
+e.printStackTrace();
+				}
+
+			
+			   System.out.println("Creating new form! Id was assigned to " +  session.getAttribute("editingFormID"));
+
 		   }
 		
 		
 		
-		 Connection conn = cf.getConnection();
 			String[] primaryKeys = new String[1];
 			primaryKeys[0] = "form_id";
 			String sql = "update forms_table set grade=NVL(?,grade), date_completed=NVL(?,date_completed) , employee_approval=NVL(?,employee_approval), benCo_approval=NVL(?,benCo_approval), dha_approval =NVL(?,dha_approval), dsa_approval=NVL(?,dsa_approval), grades_approval=NVL(?,grades_approval) , form_status =NVL(?,form_status), description=NVL(?,description), location=NVL(?,location), cost=NVL(?,cost),reason_denial=NVL(?,reason_denial), reason_change=NVL(?,reason_change), reason_reimburse=NVL(?,reason_reimburse), event_type=NVL(?,event_type), files=NVL(?,files) , fName=NVL(?,fName), lName=NVL(?,lName) where form_id = ?";
