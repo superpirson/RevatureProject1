@@ -37,7 +37,6 @@ insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesa
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com'); 
 insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
-insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
 
 
