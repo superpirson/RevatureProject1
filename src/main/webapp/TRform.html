@@ -42,7 +42,14 @@ type of event; work-related justification.  -->
             <input required type="text" name="grade" placeholder="Enter grade"></input>
 
             <label for="event-type">Type of Event</label>
-            <input required type="text" name="event-type" placeholder="Enter type of event"></input>
+            <select name="event-type" placeholder="Enter type of event">
+			  <option value="university course">University Course</option>
+			  <option value="seminar">Seminar</option>
+			  <option value="certification prep class">Certification Preparation Class</option>
+			  <option value="certification">Certification</option>
+			  <option value="technical training">Technical Training</option>
+			  <option value="other">Other</option>
+			</select>
             
             <div class="dha admin reason">
             <label for="reason-change">Reason for Changing Reimbursement Amount</label>
