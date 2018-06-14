@@ -189,5 +189,6 @@ form, .form.input-form {
 	color: black;
 }
 .input-form div.child {
+	min-width: 0;
     flex: 1 0 20%; 
 } 
