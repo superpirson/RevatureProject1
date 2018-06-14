@@ -50,8 +50,7 @@ public class TRform extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("TRform.html");
 	      HttpSession session = request.getSession(true);
 	    
-	      session.setAttribute("editingFormID" ,request.getParameter("formID"));
-	      System.out.println("setting formID to " +request.getParameter("formID"));
+	   
 		rd.forward(request, response);
 	      
 		
@@ -64,6 +63,12 @@ public class TRform extends HttpServlet {
 		}
 		HttpSession session = request.getSession(true);
 
+		   session.setAttribute("editingFormID" ,request.getParameter("formID"));
+		   System.out.println("setting formID to " +request.getParameter("formID"));
+		   if(request.getParameter("formID") == null) {
+			   
+		   }
+		
 		
 		
 		 Connection conn = cf.getConnection();

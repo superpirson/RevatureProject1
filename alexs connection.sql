@@ -421,6 +421,18 @@ end insert_trform;
 
 
 
+create or replace procedure trform_new
+(p_id out number)
+as
+begin
+select form_id_seq.nextval from dual into p_id;
+insert into forms_table
+values (p_id, '','', '', date '05-09-18','F', 'No', 'No','No', 'No',
+    '', '', '', 250, null, null, 'tranining','bootcamp',null ,103);
+end trform_new;
+
+
+
 
 
 /*                      procedures for accounts_table               */
