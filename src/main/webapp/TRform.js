@@ -29,9 +29,29 @@ var loadForm = function () {
 			document.getElementsByName("grade")[0].value = form.GRADES_APPROVAL;
 			document.getElementsByName("event-type")[0].value = form.EVENT_TYPE;
 			document.getElementsByName("reason")[0].value = form.REASON_REIMBURSE;
-			document.getElementsByName("employee-approve")[0].value = form.EMPLOYEE_APPROVAL;
 			document.getElementsByName("reason-denial")[0].value = form.REASON_DENIAL;
+			console.log(data.accountType);
+			switch (data.accountType) {
+			case "Employee":
+				reveal("employee");
+				break;
+			case "dsa":
+				reveal("dsa");
+				break;
+			case "dha":
+				reveal("dha");
+				break;
+			case "benco":
+				reveal("benco");
+				break;
+			};
+
+			reveal("grade-approve");
 		});
+		
+	}
+	var reveal = function(className) {
+		Array.from(document.getElementsByClassName(className)).forEach(e => {e.style.display = "inline";});
 	}
 }
 var updateFormsTable = function () {

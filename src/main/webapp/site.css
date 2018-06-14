@@ -23,17 +23,17 @@ body * {
 .input-form div {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
     flex-wrap: wrap;
     width: 75%;
 }
 
 .input-form div * {
-	margin: 5 20px;
+	margin: 5px 20px;
 }
 .form input, .form textarea {
 	max-width: 350px;
     padding: 5px;
-    margin-bottom: 15px;
     width: 50%;
 }
 .form textarea {
@@ -64,15 +64,6 @@ body * {
 	display: flex;
     flex-direction: column;
 }
-
-/*.form.input-form div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    min-width: 300px;
-}*/
 .form.input-form div label {
 	text-align: right;
     width: 100px;
@@ -87,19 +78,37 @@ body * {
     flex-direction: row;
     justify-content: center;
 }
+.form.input-form div div input {
+	width: 10px;
+}
+.form.input-form div div label {
+	width: 50px;
+}
+.form .employee-approve {
+	width: 500px;
+}
+.form.input-form .reason {
+	width: 460px;
+	display: inline-block;
+}
+.form.input-form .reason label {
+	display: inline-block;
+	text-align: right;
+	width: 100px;
+	margin: 0 15px 0 0;
+}
+}
+.form.input-form .reason textarea {
+	display: inline-block;
+	margin: 0;
+}
+.form.input-form .approval {
+    margin: 10px 0;
+}
 
 .form.input-form .admin {
     display: none;
 }
-
-.form.input-form .approve-deny input {
-    width: 0;
-}
-
-.form.input-form .files {
-    padding:0;
-}
-
 .js-display-table {
 	display: flex;
 	flex-direction: column;

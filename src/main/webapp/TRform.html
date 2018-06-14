@@ -28,60 +28,64 @@ type of event; work-related justification.  -->
 
             <label for="cost">Cost</label>
             <input required type="text" name="cost" placeholder="Enter cost"></input>
-            
-            <div class="admin">
-            <label for="reason-change">Reason for Changing Reimbursement Amount</label>
-            <textarea type="textarea" name="reason-change" placeholder="Enter reason for changing amount"></textarea>
-            </div>
 
+
+            <label for="reason">Reason for Reimbursement</label>
+            <textarea required type="textarea" name="reason" placeholder="Enter reason"></textarea>
             <label for="location">Location</label>
             <input required type="text" name="location" placeholder="Enter location"></input>
 
             <label for="description">Description</label>
             <textarea required type="textarea" name="description" placeholder="Enter description"></textarea>
             
-
             <label for="grade">Grade</label>
             <input required type="text" name="grade" placeholder="Enter grade"></input>
 
             <label for="event-type">Type of Event</label>
             <input required type="text" name="event-type" placeholder="Enter type of event"></input>
-
-            <label for="reason">Reason for Reimbursement</label>
-            <textarea required type="textarea" name="reason" placeholder="Enter reason"></textarea>
-
-            <div class="employee-approve admin">
-            <input type="radio" name="approval" value="approve">Approve</input>
-            <input type="radio" name="approval" value="deny">Deny</input>
-            </div>
             
-            <div class="dsa admin">
-            <input type="radio" name="approval" value="approve">Approve</input>
-            <input type="radio" name="approval" value="deny">Deny</input>
-            </div>
-            
-            <div class="dha admin">
-            <input type="radio" name="approval" value="approve">Approve</input>
-            <input type="radio" name="approval" value="deny">Deny</input>
-            </div>
-            
-            <div class="benco admin">
-            <input type="radio" name="approval" value="approve">Approve</input>
-            <input type="radio" name="approval" value="deny">Deny</input>
-            </div>
-            
-            <div class="grade-approve admin">
-            <input type="radio" name="approval" value="approve">Approve</input>
-            <input type="radio" name="approval" value="deny">Deny</input>
+            <div class="dha admin reason">
+            <label for="reason-change">Reason for Changing Reimbursement Amount</label>
+            <textarea type="textarea" name="reason-change" placeholder="Enter reason for changing amount"></textarea>
             </div>
 
-            <div class="dsa admin">
+            <div class="dsa admin reason">
             <label for="reason-denial">Reason for Denial</label>
             <textarea type="textarea" name="reason-denial" placeholder="Enter reason for denial"></textarea>
             </div>
-
+            
             <label for="file">Files</label>
             <input type="file" class="files" name="files" multiple/>
+            
+            <div class="employee admin approval">
+            <label for="employee-approval">Employee Approval</label>
+            <input type="radio" name="employee-approval" value="approve">Approve</input>
+            <input type="radio" name="employee-approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="dsa admin approval">
+            <label for="dsa-approval">Department Supervisor Approval</label>
+            <input type="radio" name="dsa-approval" value="approve">Approve</input>
+            <input type="radio" name="dsa-approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="dha admin approval">
+            <label for="dha-approval">Department Head Approval</label>
+            <input type="radio" name="dha-approval" value="approve">Approve</input>
+            <input type="radio" name="dha-approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="benco admin approval">
+            <label for="benco-approval">Benefits Coordinator Approval</label>
+            <input type="radio" name="benco-approval" value="approve">Approve</input>
+            <input type="radio" name="benco-approval" value="deny">Deny</input>
+            </div>
+            
+            <div class="grade-approval admin approval">
+            <label for="grade-approval">Grade Approval</label>
+            <input type="radio" name="grade-approval" value="approve">Approve</input>
+            <input type="radio" name="grade-approval" value="deny">Deny</input>
+            </div>
 </div>
             <button type="submit" value="login">Submit</button>
             
