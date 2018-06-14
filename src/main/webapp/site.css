@@ -13,7 +13,7 @@ body * {
 	align-items: center;
 	padding: 50px;
 }
-.input-form {
+.form, .input-form {
 	align-items: center;
     justify-content: space-around;
     padding: 30px;
@@ -60,7 +60,7 @@ body * {
     background-color: rgb(113, 143, 186);
 }
 
-.form.input-form {
+form, .form.input-form {
 	display: flex;
     flex-direction: column;
 }
@@ -96,7 +96,6 @@ body * {
 	text-align: right;
 	width: 100px;
 	margin: 0 15px 0 0;
-}
 }
 .form.input-form .reason textarea {
 	display: inline-block;
