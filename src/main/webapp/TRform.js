@@ -4,6 +4,11 @@ var submitForm = function (url, form) {
     var formData = new FormData(document.getElementsByClassName(form)[0]);
     xhr.send(formData);
 }
+var submitLogin = function() {
+	submitForm('login', 'login-form');
+	location.reload();
+	
+}
 var getForm = function (formID, func) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'FormInfo?formID=' + formID);
