@@ -4,7 +4,7 @@ var submitForm = function (url, form) {
     var formData = new FormData(document.getElementsByClassName(form)[0]);
     xhr.send(formData);
 }
-var TRForm = function(url, form) {
+var TRform = function(url, form) {
 	var url = new URL(window.location.href);
 	var formID = url.searchParams.get("formID");
 	if (!formID) { formID = ""; }
