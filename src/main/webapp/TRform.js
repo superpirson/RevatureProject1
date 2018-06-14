@@ -20,40 +20,40 @@ var dateParse = function(str) {
 	var month = str.substring(0,3);
 	var newMonth;
 	switch (month) {
-	case "jan":
+	case "Jan":
 		var newMonth = "01";
 		break;
-	case "feb":
+	case "Feb":
 		newMonth = "02";
 		break;
-	case "mar":
+	case "Mar":
 		newMonth = "03";
 		break;
-	case "apr":
+	case "Apr":
 		newMonth = "04";
 		break;
-	case "may":
+	case "May":
 		newMonth = "05";
 		break;
-	case "jun":
+	case "Jun":
 		newMonth = "06";
 		break;
-	case "jul":
+	case "Jul":
 		newMonth = "07";
 		break;
-	case "aug":
+	case "Aug":
 		newMonth = "08";
 		break;
 	case "Sep":
 		newMonth = "09";
 		break;
-	case "oct":
+	case "Oct":
 		newMonth = "10";
 		break;
-	case "nov":
+	case "Nov":
 		newMonth = "11";
 		break;
-	case "dec":
+	case "Dec":
 		newMonth = "12";
 		break;
 	}
