@@ -2,10 +2,12 @@ package com.revature;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -103,6 +105,25 @@ public class FormInfo extends HttpServlet {
 
 						//s.append(" ["+o+"] = " +dataAdd);
 					}
+					
+					
+					String formNew = "{? =call trform_new(?)}";
+					CallableStatement formNewCall;
+
+					try {
+
+						formNewCall = conn.prepareCall(formNew);
+						formNewCall.registerOutParameter (1, Types.INTEGER);
+						formNewCall.setInt(2,(Integer) session.getAttribute("userID") );
+						 formNewCall.executeQuery();	
+
+							session.setAttribute("editingFormID" ,Integer.toString(formNewCall.getInt(1)));
+						
+					} catch (SQLException e) {
+	System.out.println(e.getLocalizedMessage());
+	e.printStackTrace();
+					}
+					
 					
 					
 					res.getWriter().append("}");
