@@ -19,12 +19,10 @@ body * {
     padding: 30px;
     background-color: rgb(201, 214, 232);
     border-radius: 3px;
-    width: 75%;
 }
 .input-form div {
 	display: flex;
-	flex-direction: column;
-	height: 450px;
+	flex-direction: row;
     flex-wrap: wrap;
     width: 75%;
 }
@@ -33,16 +31,14 @@ body * {
 	margin: 5 20px;
 }
 .form input, .form textarea {
-	min-width: 350px;
 	max-width: 350px;
     padding: 5px;
     margin-bottom: 15px;
-}
-.form {
-    
+    width: 50%;
 }
 .form textarea {
-    max-width: 350px;
+    max-width: 300px;
+    min-width: 300px;
     min-height: 50px;
 }
 
@@ -78,7 +74,12 @@ body * {
     min-width: 300px;
 }*/
 .form.input-form div label {
-    /*align-self: flex-start;*/
+	text-align: right;
+    width: 100px;
+}
+.form.input-form div input {
+    width: 300px;
+    max-height: 35px;
 }
 
 .form.input-form .approve-deny {
