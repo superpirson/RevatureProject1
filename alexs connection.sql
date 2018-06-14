@@ -5,6 +5,7 @@ drop table accounts_table;
 create table accounts_table(account_id number not null, username varchar(1000) unique, pass varchar(1000), fName varchar(1000), lName varchar(1000), account_type varchar(1000), 
     reportsto varchar(1000),email varchar(1000), primary key(account_id));
     
+    
 -- creating the forms_table    
 create  table forms_table(form_id number not null, fName varchar(1000), lName varchar(1000), grade varchar(1000), date_completed date, 
     employee_approval varchar(1000), benCo_approval varchar(1000), dha_approval varchar(1000), dsa_approval varchar(1000), grades_approval varchar(1000),
@@ -602,6 +603,40 @@ end;
 select calc_reimburstment_percent(90, .80) from dual;
 
 
+create or replace function calculate_reimburse
+(f_id in number, e_type in varchar2)
+return number as 
+reimburstment_total number(10,2);
+begin
+if e_type = 'University Course' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*.80);
+elsif e_type = 'Seminar' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*.60);
+elsif e_type = 'Certification Preparation Class' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*.75);
+elsif e_type = 'Certification' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*1);
+elsif e_type = 'Technical Training' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*.90);
+elsif e_type = 'Other' then
+    select cost into reimburstment_total
+    from forms_table where form_id = f_id;
+    return (reimburstment_total*.30);
+    
+    end if;
+    
+end;
+/
 
 
 
