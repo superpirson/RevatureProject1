@@ -29,7 +29,6 @@ public class LoginServer extends HttpServlet {
 		
 	     // Connection conn = cf.getConnection();
 	     Connection conn = cf.getConnection();
-
 		//Create a new session cookie!
 	     HttpSession session = request.getSession(true);
 	    
@@ -44,7 +43,7 @@ public class LoginServer extends HttpServlet {
 	    System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
 		response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("login.html");
-	      rd.forward(request, response);
+	     rd.forward(request, response);
 	}
 
 
