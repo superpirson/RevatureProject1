@@ -82,7 +82,7 @@ public class TRform extends HttpServlet {
 					formNewCall.setInt(2,(Integer) session.getAttribute("userID") );
 					 formNewCall.executeQuery();	
 
-						session.setAttribute("editingFormID" ,formNewCall.getInt(1));
+						session.setAttribute("editingFormID" ,Integer.toString(formNewCall.getInt(1)));
 					
 				} catch (SQLException e) {
 System.out.println(e.getLocalizedMessage());
@@ -145,7 +145,7 @@ e.printStackTrace();
 					ps.setString(8, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("form_status")), null)));
 					ps.setString(9, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("description")), null)));
 					ps.setString(10, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("location")), null)));
-					System.out.println("location: "+convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("location")), null)));
+					//System.out.println("location: "+convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("location")), null)));
 
 					ps.setDouble(11, Double.parseDouble(convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("cost")), null))));
 					ps.setString(12, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("reason_denial")), null)));
