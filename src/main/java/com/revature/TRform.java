@@ -80,9 +80,9 @@ public class TRform extends HttpServlet {
 					formNewCall = conn.prepareCall(formNew);
 					formNewCall.registerOutParameter (1, Types.INTEGER);
 					formNewCall.setInt(2,(Integer) session.getAttribute("userID") );
-					ResultSet rs = formNewCall.executeQuery();	
+					 formNewCall.executeQuery();	
 
-						session.setAttribute("editingFormID" ,rs.getInt(1));
+						session.setAttribute("editingFormID" ,formNewCall.getInt(1));
 					
 				} catch (SQLException e) {
 System.out.println(e.getLocalizedMessage());
@@ -156,7 +156,7 @@ e.printStackTrace();
 					ps.setString(17, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("fname")), null)));
 					ps.setString(18, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("lname")), null)));
 
-					ps.setInt(19,  Integer.parseInt((String) session.getAttribute("editingFormID")));
+					ps.setInt(19,  (Integer) session.getAttribute("editingFormID"));
 					//System.out.println(ps);
 				rs = ps.executeQuery();
 			}catch (SQLException s) {

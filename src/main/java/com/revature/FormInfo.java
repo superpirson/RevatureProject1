@@ -51,7 +51,7 @@ public class FormInfo extends HttpServlet {
 	      String userName = (String) session.getAttribute("username");
 	      String password=(String) session.getAttribute("password");
 	      String accountType = (String) session.getAttribute("account_type");
-	      String editingFormID = (String) session.getAttribute("editingFormID");
+	      int editingFormID = (Integer) session.getAttribute("editingFormID");
 
 //	     / StringBuilder s = new StringBuilder();
 		PrintWriter out = res.getWriter();
