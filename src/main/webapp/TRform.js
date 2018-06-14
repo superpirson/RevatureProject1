@@ -8,6 +8,7 @@ var TRform = function() {
 	var url = new URL(window.location.href);
 	var formID = url.searchParams.get("formID");
 	if (!formID) { formID = ""; }
+	console.log(formID);
 	submitForm('TRform?formID=' + formID, 'input-form');
 }
 var submitLogin = function() {
@@ -21,7 +22,7 @@ var getForm = function (formID, func) {
     	var data = JSON.parse(xhr.response);
     	func(data);
     }
-    xhr.send()
+    xhr.send();
 }
 var dateParse = function(str) {
 	var date = "";
