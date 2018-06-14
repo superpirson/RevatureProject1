@@ -36,6 +36,7 @@ insert into accounts_table values(account_id_seq.nextval, 'rafaeltx', 'awesomesa
 insert into accounts_table values(account_id_seq.nextval, 'alexGee', 'alexpatton', 'Alex', 'Patton', 'Employee', 'DHA', 'alex@idk.com'); 
 insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
+insert into accounts_table values(account_id_seq.nextval, 'admin', 'admin', 'admin', 'admin', 'Employee', 'DHA', 'alex@idk.com');   
 
 
 
@@ -67,7 +68,7 @@ insert into forms_table values(96, 'Matt','Knighten', 'F*(F)', date '06-06-06','
 
 
 
-
+update forms_table set grade=NVL(?,grade), date_completed=NVL(?,date_completed) , employee_approval=NVL(?,employee_approval), benCo_approval=NVL(?,benCo_approval), dha_approval =NVL(?,dha_approval), dsa_approval=NVL(?,dsa_approval), grades_approval=NVL(?,grades_approval) , form_status =NVL(?,form_status), description=NVL(?,description), location=NVL(?,location), cost=NVL(?,cost),reason_denial=NVL(?,reason_denial), reason_change=NVL(?,reason_change), reason_reimburse=NVL(?,reason_reimburse), event_type=NVL(?,event_type), files=NVL(?,files) , fName=NVL(?,fName) lName=NVL(?,lName) where form_id = ?
 
 /*              procedures for the forms_table          */
 

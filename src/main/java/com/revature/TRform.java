@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.sound.midi.Synthesizer;
 import javax.sound.midi.SysexMessage;
 
 import org.w3c.dom.NamedNodeMap;
@@ -67,7 +68,7 @@ public class TRform extends HttpServlet {
 		 Connection conn = cf.getConnection();
 			String[] primaryKeys = new String[1];
 			primaryKeys[0] = "form_id";
-			String sql = "update forms_table set grade=NVL(?,grade), date_completed=NVL(?,date_completed) , employee_approval=NVL(?,employee_approval), benCo_approval=NVL(?,benCo_approval), dha_approval =NVL(?,dha_approval), dsa_approval=NVL(?,dsa_approval), grades_approval=NVL(?,grades_approval) , form_status =NVL(?,form_status), description=NVL(?,description), location=NVL(?,location), cost=NVL(?,cost),reason_denial=NVL(?,reason_denial), reason_change=NVL(?,reason_change), reason_reimburse=NVL(?,reason_reimburse), event_type=NVL(?,event_type), files=NVL(?,files) , fName=NVL(?,fName) lName=NVL(?,lName) where form_id = ?";
+			String sql = "update forms_table set grade=NVL(?,grade), date_completed=NVL(?,date_completed) , employee_approval=NVL(?,employee_approval), benCo_approval=NVL(?,benCo_approval), dha_approval =NVL(?,dha_approval), dsa_approval=NVL(?,dsa_approval), grades_approval=NVL(?,grades_approval) , form_status =NVL(?,form_status), description=NVL(?,description), location=NVL(?,location), cost=NVL(?,cost),reason_denial=NVL(?,reason_denial), reason_change=NVL(?,reason_change), reason_reimburse=NVL(?,reason_reimburse), event_type=NVL(?,event_type), files=NVL(?,files) , fName=NVL(?,fName), lName=NVL(?,lName) where form_id = ?";
 			
 			
 			/*
@@ -114,8 +115,9 @@ public class TRform extends HttpServlet {
 					ps.setString(8, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("form_status")), null)));
 					ps.setString(9, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("description")), null)));
 					ps.setString(10, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("location")), null)));
+					System.out.println("location: "+convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("location")), null)));
+
 					ps.setDouble(11, Double.parseDouble(convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("cost")), null))));
-					
 					ps.setString(12, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("reason_denial")), null)));
 					ps.setString(13, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("reason_change")), null)));
 					ps.setString(14, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("reason_reimburse")), null)));
@@ -124,9 +126,8 @@ public class TRform extends HttpServlet {
 					ps.setString(17, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("fname")), null)));
 					ps.setString(18, convertStreamToString(inputStreamOrNull(request.getPart(nameMapsInverse.get("lname")), null)));
 
-					ps.setString(19,  (String) session.getAttribute("editingFormID"));
-					System.out.println(sql);
-
+					ps.setInt(19,  Integer.parseInt((String) session.getAttribute("editingFormID")));
+					//System.out.println(ps);
 				rs = ps.executeQuery();
 			}catch (SQLException s) {
 				System.err.println(s.getMessage());
