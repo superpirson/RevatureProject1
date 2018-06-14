@@ -72,14 +72,14 @@ public class LoginServer extends HttpServlet {
 
 	    		  session.invalidate();
 	    	  }else {
-				response.sendRedirect("home"); 
+				//response.sendRedirect("home"); 
+				request.getRequestDispatcher("home").forward(request,response);
 				return;
 	    	  }
 	      }
 		//response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		//doPost(request, response);
-	    System.out.println("get from Session " + session.getId() + ". It was made at " + session.getCreationTime() + " and last seen at " + session.getLastAccessedTime());
-		response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
+	    response.getWriter().append("Served by doget at LoginServer at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("login.html");
 	     rd.forward(request, response);
 	}
