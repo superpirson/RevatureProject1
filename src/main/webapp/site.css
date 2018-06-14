@@ -188,11 +188,6 @@ form, .form.input-form {
 	background-color: rgb(201, 214, 232);
 	color: black;
 }
-form.input-form div.child {
-    display: inline-block;
-    background:blue;
-    margin:10px 0 0 2%;
-    flex-grow: 1;
-    height:100px;
-    width: calc(100% * (1/4) - 10px - 1px);
+.input-form div.child {
+    flex: 1 0 20%; 
 } 
