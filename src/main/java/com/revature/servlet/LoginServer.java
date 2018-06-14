@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Hashtable;
+import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +23,28 @@ import javax.servlet.http.HttpSession;
 
 @MultipartConfig
 public class LoginServer extends HttpServlet {
+	
+	public static Hashtable<String, String> nameMapsToSQL= new Hashtable<String, String>();
+	public static  Hashtable<String, String> nameMapsInverse= new Hashtable<String, String>();
+
+	static {
+		nameMapsToSQL.put("first-name", "fName");
+		nameMapsToSQL.put("date", "date_completed");
+		nameMapsToSQL.put("cost", "cost");
+		nameMapsToSQL.put("reason", "reason");
+		nameMapsToSQL.put("location", "location");
+		nameMapsToSQL.put("description", "description");
+		nameMapsToSQL.put("last-name", "lName");
+		nameMapsToSQL.put("grading-format", "grade");
+		nameMapsToSQL.put("event-type", "event_type");
+		nameMapsToSQL.put("reason-change", "reason_change");
+		nameMapsToSQL.put("reason-denial", "reason_denial");
+		nameMapsToSQL.put("reason", "reason");
+		//Build the inverse
+		for(Entry<String, String> e:nameMapsToSQL.entrySet()) {
+			nameMapsInverse.put(e.getValue(), e.getKey());
+		}
+	}
 	private static final long serialVersionUID = 1L;
 	public static com.revature.ConnFactory cf =com.revature.ConnFactory.getInstance();
 
