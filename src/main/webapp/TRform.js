@@ -159,6 +159,12 @@ var updateFormsTable = function () {
             	case "SUBMITTED_BY":
             		propName = "submitted-by";
             		break;
+            	case "REASON_DENIAL":
+            		propName = "reason-denial";
+            		break;
+            	case "REASON_CHANGE":
+            		propName = "reason-change";
+            		break;
             	}
             	//create the prop div
             	document.getElementsByClassName("form-" + (i + 1))[0].appendChild(document.createElement("div")).classList.add(propName);
