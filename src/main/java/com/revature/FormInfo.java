@@ -106,7 +106,7 @@ public class FormInfo extends HttpServlet {
 						//s.append(" ["+o+"] = " +dataAdd);
 					}
 					
-					/*
+					
 					String getReimburse = "{? =call calculate_reimburse(?,?)}";
 					CallableStatement formNewCall;
 					
@@ -117,13 +117,13 @@ public class FormInfo extends HttpServlet {
 						formNewCall.setInt(2,(Integer) rs.getInt(1) );
 						formNewCall.setString(3,rs.getString(17) );
 						 formNewCall.executeQuery();	
-						 res.getWriter().append(",Rembursment_ammount:\""+formNewCall.getDouble(1)+"\"");
+						 res.getWriter().append(",\"Rembursment_ammount\":"+formNewCall.getDouble(1));
 					} catch (SQLException e) {
 	System.out.println(e.getLocalizedMessage());
 	e.printStackTrace();
 					}
 					
-					*/
+					
 					
 					res.getWriter().append("}");
 

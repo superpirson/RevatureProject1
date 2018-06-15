@@ -634,6 +634,7 @@ elsif e_type = 'Other' then
     return (reimburstment_total*.30);
     
     end if;
+return (0);
     
 end;
 /
